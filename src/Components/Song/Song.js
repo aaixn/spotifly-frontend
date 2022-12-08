@@ -16,9 +16,9 @@ const Song = () => {
 
     if (songs === undefined) return;
 
-    const deleteSong = (songId) => {
-        axios.dete(`https://localhost:8080/api/song/${songId}`)
-    }
+    // const deleteSong = (songId) => {
+    //     axios.dete(`https://localhost:8080/api/song/${songId}`)
+    // }
     const songList = songs.map((song, key) => {
         return (
             <div key={key}>
