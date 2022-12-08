@@ -6,7 +6,7 @@ const Song = () => {
     const [songs, setSongs] = useState
     const getSongs = () => {
         //I dont think this link is right - i think we need to set a state for the user and interpolate that in to the link??
-        axios.get('http://localhost:8080/api/').then(response => {
+        axios.get(`http://localhost:8080/api/users/${username}`).then(response => {
             setSongs(response.data.songs)
         })
     }
