@@ -26,15 +26,7 @@ export default function Playlist({playlist, setPlaylist}) {
             <h1>{playlist.name}</h1>
             <IoIosAddCircle style={{fontSize: '2em'}}/>
         </div>
-        <div className='song-list'>
-            <div className='songlist-header'>
-                <h4>Title</h4>
-                <h4>Album</h4>
-                <h4>Date Added</h4>
-                <h4>Duration</h4>
-            </div>
-            <SongList playlist ={playlist}/>
-        </div>
+        <SongList playlist ={playlist}/>
     </div>
   )
 }
