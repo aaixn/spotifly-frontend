@@ -7,14 +7,14 @@ import { useState } from 'react'
 
 
 function App() {
-  const [users, setUsers] = useState()
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [user, setUser] = useState('')
+  // const [loggedIn, setLoggedIn] = useState(false)
   return (
     <div className='login'>
-      {loggedIn ? <Nav /> : <></>}
+      {user ? <Nav /> : <></>}
       <Routes>
-        <Route path='/' element={<Login users={users} setUsers={setUsers} />} />
-        <Route path='/home' element={<Home />} />
+        <Route path='/' element={<Login user={user} setUser={setUser} />} />
+        <Route path='/:id/home' element={<Home />} />
       </Routes>
     </div>
   );
