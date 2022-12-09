@@ -20,7 +20,7 @@ const User = () => {
     // })
     return (
         <div class='user-name-div'>
-            <h3 class='user-name'>user</h3>
+            <h3 class='user-name'>User</h3>
         </div>
     )
 }
