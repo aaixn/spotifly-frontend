@@ -14,10 +14,3 @@
     width: 10vw;
     height: 10vw;
 }
-
-.songlist-header {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5em;
-    border-bottom: 2px solid;
-}
