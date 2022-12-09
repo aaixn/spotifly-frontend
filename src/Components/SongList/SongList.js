@@ -11,6 +11,11 @@ export default function SongList({playlist}) {
         return `${minutes}:${seconds}`
     }
 
+    const dateConvert = (createdAt) => {
+        let date = new Date(createdAt.substring(0, 10)) 
+        date = date.toLocaleDateString('en-us', {month: 'long', day: 'numeric', year: 'numeric'})
+        return date
+    }
 
     return (
     <div>
@@ -28,7 +33,7 @@ export default function SongList({playlist}) {
                         <td>{song.name}</td>
                         <td>{song.artist.map((artist, index) => {return index !== song.artist.length -1 ? (`${artist}, `) : artist })}</td>
                         <td>{song.album.map((album, index) => {return index !== song.album.length -1 ? (`${album}, `) : album })}</td>
-                        <td>{song.createdAt}</td>
+                        <td>{dateConvert(song.createdAt)}</td>
                         <td>{durationConvert(song.duration)}</td>
                     </tr>
                 )
