@@ -1,18 +1,18 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {IoIosAddCircle} from 'react-icons/io'
 import { useParams } from 'react-router-dom'
 import '../Playlist/Playlist.css'
+import SongList from '../SongList/SongList'
 
-export default function Playlist() {
+export default function Playlist({playlist, setPlaylist}) {
 
   const {id} = useParams()
-  const [playlist, setPlaylist] = useState({})
 
 
   useEffect(() => {
     getPlaylist()
-  }, [])
+  }, [id])
 
   const getPlaylist = async() => {
     const playlistInfo = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`)
@@ -26,15 +26,7 @@ export default function Playlist() {
             <h1>{playlist.name}</h1>
             <IoIosAddCircle style={{fontSize: '2em'}}/>
         </div>
-        <div className='song-list'>
-            <div className='songlist-header'>
-                <h4>Title</h4>
-                <h4>Album</h4>
-                <h4>Date Added</h4>
-                <h4>Duration</h4>
-            </div>
-            <div className='songs'></div>
-        </div>
+        <SongList playlist ={playlist}/>
     </div>
   )
 }

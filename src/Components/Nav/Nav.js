@@ -6,7 +6,6 @@ import '../Nav/Nav.css'
 import PlaylistList from '../PlaylistList/PlaylistList'
 import axios from 'axios'
 
-
 export default function Nav({ user }) {
 	const navigate = useNavigate()
 	const handleAddPlaylist = async () => {
