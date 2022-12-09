@@ -15,15 +15,6 @@
     border-bottom: 2px solid;
 }
 
-.nav-playlist-list {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    align-items: center;
-    border-bottom: 2px solid;
-}
-
 .nav-home {
     gap: 1em;
 }
@@ -39,12 +30,4 @@ a {
 
 .playlist-list {
     list-style: none;
-}
-
-.playlist-item {
-    display: table-cell;
-    width: 100%;
-    text-align: center;
-    outline: 2px solid;
-    box-sizing: border-box;
 }
