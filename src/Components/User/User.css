@@ -1,0 +1,9 @@
+.user-name-div {
+    /* border: 2px solid red; */
+    display: flex;
+}
+.user-name {
+    /* border: 2px solid green; */
+    margin-right: 0 auto;
+    padding-left: 10px;
+}
