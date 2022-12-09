@@ -17,7 +17,7 @@ export default function PlaylistList() {
         <div className='nav-playlist-list'>
             {playlists.map(playlist =>
                 <div className='playlist-item'>
-                    <Link to='/playlist'>{playlist.name}</Link>
+                    <Link to={'/playlist/' + playlist._id}>{playlist.name}</Link>
                 </div>)}
         </div>
     )
