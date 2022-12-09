@@ -8,17 +8,17 @@ import axios from 'axios'
 
 
 export default function Nav({ user }) {
+	const navigate = useNavigate()
 	const handleAddPlaylist = async () => {
 		console.log(user.playlists.length)
 		const newPlaylist = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/playlists', {
 			name: `My Playlist #${user.playlists.length + 1}`,
 			songs: []
 		})
-		console.log(newPlaylist)
 		const updatedUser = await axios.put('https://spotifly-backend-ga.herokuapp.com/api/users/' + user._id + '/add', {
 			_id: newPlaylist.data._id
 		})
-		console.log(updatedUser.data)
+		navigate(`/playlist/${newPlaylist.data._id}`)
 	}
 	return (
 		<div className='nav'>
