@@ -11,7 +11,7 @@ export default function Playlist({playlist, setPlaylist}) {
 
   useEffect(() => {
     getPlaylist()
-  }, [])
+  }, [id])
 
   const getPlaylist = async() => {
     const playlistInfo = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`)
