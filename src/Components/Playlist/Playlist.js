@@ -1,13 +1,12 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {IoIosAddCircle} from 'react-icons/io'
 import { useParams } from 'react-router-dom'
 import '../Playlist/Playlist.css'
 
-export default function Playlist() {
+export default function Playlist({playlist, setPlaylist}) {
 
   const {id} = useParams()
-  const [playlist, setPlaylist] = useState({})
 
 
   useEffect(() => {
