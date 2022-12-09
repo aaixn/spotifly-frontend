@@ -1,16 +1,23 @@
 .user-selection {
-    border: 2px solid blue;
     display: inline-flex;
-    justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    
+    margin-top: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 30px
 }
 .user-morgan {
-    margin: 0 auto;
+    display: flex;
+    margin-left: 40%;
+    margin-right: 40%;
 }
 .user-ana {
-    margin: 0 auto;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 .user-eli {
-    margin: 0 auto;
+    margin-left: 40%;
+    margin-right: 40%;
 }
