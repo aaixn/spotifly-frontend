@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import {IoIosAddCircle} from 'react-icons/io'
 import { useParams } from 'react-router-dom'
 import '../Playlist/Playlist.css'
+import Song from '../Song/Song'
 
 export default function Playlist({playlist, setPlaylist}) {
 
@@ -32,7 +33,9 @@ export default function Playlist({playlist, setPlaylist}) {
                 <h4>Date Added</h4>
                 <h4>Duration</h4>
             </div>
-            <div className='songs'></div>
+            <div>
+              <Song />
+            </div>
         </div>
     </div>
   )
