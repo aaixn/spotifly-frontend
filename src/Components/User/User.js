@@ -19,7 +19,7 @@ const User = () => {
     })
     return (
         <div>
-
+            <h3>{userName}</h3>
         </div>
     )
 }
