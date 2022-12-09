@@ -13,7 +13,7 @@ export default function Nav() {
         </div></Link>
         <div className='nav-playlists'>
             <p>Playlists</p>
-            <IoIosAddCircle className='add-playlist-buttonn'/>
+            <IoIosAddCircle className='add-playlist-button' style={{fontSize: '1.3em'}}/>
         </div>
         <div className='nav-playlist-list'>List of Playlists</div>
     </div>
