@@ -1,10 +1,10 @@
 import './App.css';
-import Playlist from './Components/Playlist/Playlist';
+import AddSong from './Components/AddSong/AddSong';
 
 function App() {
   return (
     <div className="App">
-      <Playlist />
+      <AddSong />
     </div>
   );
 }
