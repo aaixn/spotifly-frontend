@@ -5,20 +5,10 @@ export default function SongList({playlist}) {
     console.log(playlist.songs);
     return (
     <div>
-        {/* {playlist.songs && playlist.songs.map((song, index) => {
-            return (
-            <div key={index} style={{display:'flex'}}>
-                <p>{song.name}</p>
-                <p>{song.artist[0]}</p>
-                <p>{song.album[0]}</p>
-                <p>{song.createdAt}</p>
-                <p>{song.duration} sec</p>
-            </div>
-            )
-        })} */}
         <table>
             <tr className='songlist-header'>
                 <th>Title</th>
+                <th>Artist</th>
                 <th>Album</th>
                 <th>Date Added</th>
                 <th>Duration</th>
@@ -27,7 +17,8 @@ export default function SongList({playlist}) {
                 return (
                     <tr>
                         <td>{song.name}</td>
-                        <td>{song.album}</td>
+                        <td>{song.artist.map((artist, index) => {return index !== song.artist.length -1 ? (`${artist}, `) : artist })}</td>
+                        <td>{song.album.map((album, index) => {return index !== song.album.length -1 ? (`${album}, `) : album })}</td>
                         <td>{song.createdAt}</td>
                         <td>{song.duration} sec</td>
                     </tr>
