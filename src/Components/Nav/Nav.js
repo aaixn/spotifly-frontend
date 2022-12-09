@@ -29,7 +29,7 @@ export default function Nav({ user }) {
 				<p>Playlists</p>
 				<IoIosAddCircle className='add-playlist-button' style={{ fontSize: '1.3em' }} onClick={handleAddPlaylist} />
 			</div>
-			<PlaylistList />
+			<PlaylistList user={user}/>
 		</div>
 	)
 }
