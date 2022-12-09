@@ -6,7 +6,7 @@ import '../Nav/Nav.css'
 import PlaylistList from '../PlaylistList/PlaylistList'
 
 
-export default function Nav() {
+export default function Nav({user}) {
   return (
     <div className='nav'>
         <Link to='/'><div className='nav-home'>
@@ -17,7 +17,7 @@ export default function Nav() {
             <p>Playlists</p>
             <IoIosAddCircle className='add-playlist-button' style={{fontSize: '1.3em'}}/>
         </div>
-        <PlaylistList />
+        <PlaylistList user={user}/>
     </div>
   )
 }
