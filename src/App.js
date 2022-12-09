@@ -9,6 +9,7 @@ import Playlist from './Components/Playlist/Playlist';
 
 function App() {
   const [user, setUser] = useState('')
+  const [playlist, setPlaylist] = useState({})
   // const [loggedIn, setLoggedIn] = useState(false)
   return (
     <div className='login'>
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Login user={user} setUser={setUser} />} />
         <Route path='/:id/home' element={<Home />} />
-        <Route path='/playlist/:id' element={<Playlist user={user}/>}/>
+        <Route path='/playlist/:id' element={<Playlist user={user} playlist={playlist} setPlaylist={setPlaylist}/>}/>
       </Routes>
     </div>
   );
