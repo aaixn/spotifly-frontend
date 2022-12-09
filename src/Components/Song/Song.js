@@ -7,8 +7,8 @@ const Song = () => {
     const [songs, setSongs] = useState
     let params = useParams()
     const getSongs = () => {
-        //I dont think this link is right - i think we need to set a state for the user and interpolate that in to the link??
         axios.get(`http://localhost:8080/api/playlist/${params.id}`).then(response => {
+            console.log(response.data.songs)
             setSongs(response.data.songs)
         })
     }
