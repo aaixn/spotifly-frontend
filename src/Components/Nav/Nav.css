@@ -2,16 +2,16 @@
     display: flex;
     flex-direction: column;
     border: 2px solid;
-    width: 10vw;
+    width: 15vw;
     height: 90vh;
     text-align: left;
-    padding: 0 10px 0 10px;
-    text-decoration: none;
 }
 
-.nav-home, .nav-playlists {
+.nav-home, .nav-playlists, .nav-playlist-list {
     display: flex;
     align-items: center;
+    padding: 0 10px 0 10px;
+    border-bottom: 2px solid;
 }
 .nav-home {
     gap: 1em;
