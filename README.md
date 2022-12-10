@@ -42,9 +42,9 @@ Spotifly is a music streaming app which allows users to seamlessly create playli
 
 | Component    | Description                                                              |
 | ------------ | ------------------------------------------------------------------------ |
-| App          | Contains the header, make the initial data pull and include React Router |
-| Header       | Includes the nav and will render the container                           |
-| Container    | Includes KeyData, Articles, Graph, and Symbol holds API fetch            |
+| App          | Contains the Login page including the Home page, Playlist, and Nav component if there is a user |
+| Home       | Provides the home page information                           |
+| AddSong    | Form allowing users to add songs to playlists           |
 | KeyData      | Displays all key data elements of the webpage                            |
 | Articles     | Displays news articles of related stock information                      |
 | Graph        | Displays time series data                                                |
