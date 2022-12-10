@@ -22,7 +22,6 @@ export default function SongList({playlist}) {
         <table>
             <tr className='songlist-header'>
                 <th>Title</th>
-                <th>Artist</th>
                 <th>Album</th>
                 <th>Date Added</th>
                 <th>Duration</th>
@@ -30,8 +29,7 @@ export default function SongList({playlist}) {
             {playlist.songs && playlist.songs.map((song, index) => {
                 return (
                     <tr>
-                        <td>{song.name}</td>
-                        <td>{song.artist.map((artist, index) => {return index !== song.artist.length -1 ? (`${artist}, `) : artist })}</td>
+                        <td><span style={{fontWeight: 'bold'}}>{song.name}</span><br/>{song.artist.map((artist, index) => {return index !== song.artist.length -1 ? (`${artist}, `) : artist })}</td>
                         <td>{song.album.map((album, index) => {return index !== song.album.length -1 ? (`${album}, `) : album })}</td>
                         <td>{dateConvert(song.createdAt)}</td>
                         <td>{durationConvert(song.duration)}</td>
