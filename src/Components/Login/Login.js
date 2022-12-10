@@ -11,9 +11,9 @@ const Login = ({user, setUser}) => {
     }
     return (
         <div className='user-selection'>
-            <Link to='/63935095d2cd174067383ea6/home' onClick={(event)=>{handleClick(event)}} name = '63935095d2cd174067383ea6' className='user-morgan'>Morgan</Link>
-            <Link to='/63935095d2cd174067383ea5/home' onClick={(event)=>{handleClick(event)}} name = '63935095d2cd174067383ea5' className='user-ana'>Ana</Link>
-            <Link to='/63935095d2cd174067383ea4/home' onClick={(event)=>{handleClick(event)}} name = '63935095d2cd174067383ea4' className='user-eli'>Eli</Link>
+            <Link to='/6394c87544a2d6352ff755ad/home' onClick={(event)=>{handleClick(event)}} name = '6394c87544a2d6352ff755ad' className='user-morgan'>Morgan</Link>
+            <Link to='/6394c87544a2d6352ff755ac/home' onClick={(event)=>{handleClick(event)}} name = '6394c87544a2d6352ff755ac' className='user-ana'>Ana</Link>
+            <Link to='/6394c87544a2d6352ff755ab/home' onClick={(event)=>{handleClick(event)}} name = '6394c87544a2d6352ff755ab' className='user-eli'>Eli</Link>
         </div>
     )
 }

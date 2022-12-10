@@ -1,5 +1,7 @@
 import React from 'react'
 import '../SongList/SongList.css'
+import {TbTrash} from 'react-icons/tb'
+import axios from 'axios'
 
 export default function SongList({playlist}) {
 
@@ -17,23 +19,38 @@ export default function SongList({playlist}) {
         return date
     }
 
+    const deleteSong = async (song) => {
+        try {
+            const id = await playlist._id
+            const updatedSongs = await playlist.songs.filter(item => item._id !== song._id)
+            await axios.put(`http://localhost:8080/api/playlists/${id}`, {songs: updatedSongs})
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
     return (
     <div>
         <table>
-            <tr className='songlist-header'>
-                <th>Title</th>
-                <th>Album</th>
-                <th>Date Added</th>
-                <th>Duration</th>
-            </tr>
+            <tbody>
+                <tr className='songlist-header'>
+                    <th>Title</th>
+                    <th>Album</th>
+                    <th>Date Added</th>
+                    <th>Duration</th>
+                </tr>
+            </tbody>
             {playlist.songs && playlist.songs.map((song, index) => {
                 return (
-                    <tr>
-                        <td><span style={{fontWeight: 'bold'}}>{song.name}</span><br/>{song.artist.map((artist, index) => {return index !== song.artist.length -1 ? (`${artist}, `) : artist })}</td>
-                        <td>{song.album.map((album, index) => {return index !== song.album.length -1 ? (`${album}, `) : album })}</td>
-                        <td>{dateConvert(song.createdAt)}</td>
-                        <td>{durationConvert(song.duration)}</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td><span style={{fontWeight: 'bold'}}>{song.name}</span><br/>{song.artist.map((artist, index) => {return index !== song.artist.length -1 ? (`${artist}, `) : artist })}</td>
+                            <td>{song.album.map((album, index) => {return index !== song.album.length -1 ? (`${album}, `) : album })}</td>
+                            <td>{dateConvert(song.createdAt)}</td>
+                            <td>{durationConvert(song.duration)}</td>
+                            <td><TbTrash style={{color:'red'}} onClick={() => deleteSong(song)}/></td>
+                        </tr>
+                    </tbody>
                 )
             })}
         </table>
