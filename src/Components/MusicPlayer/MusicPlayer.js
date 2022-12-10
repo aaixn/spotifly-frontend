@@ -9,12 +9,12 @@ const MusicPlayer = () => {
       const [data, setData] = useState([]);
     
       useEffect(() => {
-        const musicData = musicArray.map((sound) => {
+        const musicData = musicLinks.map((sound) => {
           return { audio: new Audio(sound), play: false };
         });
     
         setData(musicData);
-      }, [musicArray]);
+      }, [musicLinks]);
     
       const playSound = (index) => {
         setData((arr) =>
