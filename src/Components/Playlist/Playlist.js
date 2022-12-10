@@ -7,7 +7,7 @@ import AddSong from '../AddSong/AddSong'
 import '../Playlist/Playlist.css'
 import SongList from '../SongList/SongList'
 
-export default function Playlist({ playlist, setPlaylist, user }) {
+export default function Playlist({ playlist, setPlaylist, user, setUser }) {
 
   const { id } = useParams()
   const navigate = useNavigate()
@@ -22,9 +22,11 @@ export default function Playlist({ playlist, setPlaylist, user }) {
   }
 
   const deletePlaylist = async () => {
-    const updatedUser = await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}/remove`, {
+    const res = await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}/remove`, {
       _id: id
     })
+    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}`)
+    setUser(updatedUser)
     navigate(-1)
   }
 
