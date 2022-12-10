@@ -3,7 +3,7 @@ import React from "react";
 import {useState, useEffect} from 'react'
 
 const MusicPlayer = () => {
-    const [musicArray] = useState([
+    const [musicLinks] = useState([
         "https://soundcloud.com/noahkahan/false-confidence?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
       ]);
       const [data, setData] = useState([]);
