@@ -9,7 +9,6 @@ import axios from 'axios'
 export default function Nav({ user }) {
 	const navigate = useNavigate()
 	const handleAddPlaylist = async () => {
-		console.log(user.playlists.length)
 		const newPlaylist = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/playlists', {
 			name: `My Playlist #${user.playlists.length + 1}`,
 			songs: []
