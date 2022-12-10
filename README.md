@@ -18,9 +18,14 @@ Spotifly is a music streaming app which allows users to seamlessly create playli
 
 ### MVP Goals:
 
-- Webpage with option to select stock
-- Shows price/volume and information about the stock
-- Have a chart/graph demonstrating historical data
+- Have a login and sign up page
+- Have a menu bar with options to select Home and Playlist
+- Play songs
+- Have a list of playlists, view playlists and songs in playlists
+- View song that is being played, able to pause and stop it
+- Able to add songs manually through a form 
+- Delete song from playlist and delete playlist
+
 
 ### Post MVP Goals:
 
