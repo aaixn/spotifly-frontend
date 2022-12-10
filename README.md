@@ -29,8 +29,14 @@ Spotifly is a music streaming app which allows users to seamlessly create playli
 
 ### Post MVP Goals:
 
-- Use D3 to make a graph of stock prices over time
-- Related news articles about selected stock
+- Spotify wrapped
+    - Track listening statistics of users for songs and artist
+- Have a tracked artist model
+- User authentication
+- User photo
+- Integrate search to include spotify results 
+- Discover songs based on genre 
+
 
 ### Components:
 
