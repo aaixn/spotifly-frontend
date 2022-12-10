@@ -2,10 +2,11 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import {IoIosAddCircle} from 'react-icons/io'
 import { useParams } from 'react-router-dom'
+import AddSong from '../AddSong/AddSong'
 import '../Playlist/Playlist.css'
 import SongList from '../SongList/SongList'
 
-export default function Playlist({playlist, setPlaylist}) {
+export default function Playlist({playlist, setPlaylist, user}) {
 
   const {id} = useParams()
 
@@ -27,6 +28,7 @@ export default function Playlist({playlist, setPlaylist}) {
             <IoIosAddCircle style={{fontSize: '2em'}}/>
         </div>
         <SongList playlist ={playlist}/>
+        <AddSong playlist={playlist} user={user}/>
     </div>
   )
 }
