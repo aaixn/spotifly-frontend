@@ -13,11 +13,11 @@ function App() {
   // const [loggedIn, setLoggedIn] = useState(false)
   return (
     <div className='login'>
-      {user ? <Nav user={user}/> : <></>}
+      {user ? <Nav user={user} setUser={setUser} /> : <></>}
       <Routes>
         <Route path='/' element={<Login user={user} setUser={setUser} />} />
         <Route path='/:id/home' element={<Home />} />
-        <Route path='/playlist/:id' element={<Playlist user={user} playlist={playlist} setPlaylist={setPlaylist}/>}/>
+        <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} />} />
       </Routes>
     </div>
   );

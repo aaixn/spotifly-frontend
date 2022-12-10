@@ -6,17 +6,18 @@ import '../Nav/Nav.css'
 import PlaylistList from '../PlaylistList/PlaylistList'
 import axios from 'axios'
 
-export default function Nav({ user }) {
+export default function Nav({ user, setUser }) {
 	const navigate = useNavigate()
 	const handleAddPlaylist = async () => {
-		console.log(user.playlists.length)
 		const newPlaylist = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/playlists', {
 			name: `My Playlist #${user.playlists.length + 1}`,
 			songs: []
 		})
-		const updatedUser = await axios.put('https://spotifly-backend-ga.herokuapp.com/api/users/' + user._id + '/add', {
+		await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}/add`, {
 			_id: newPlaylist.data._id
 		})
+		const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}`)
+		setUser(updatedUser.data)
 		navigate(`/playlist/${newPlaylist.data._id}`)
 	}
 	return (
@@ -29,7 +30,7 @@ export default function Nav({ user }) {
 				<p>Playlists</p>
 				<IoIosAddCircle className='add-playlist-button' style={{ fontSize: '1.3em' }} onClick={handleAddPlaylist} />
 			</div>
-			<PlaylistList user={user}/>
+			<PlaylistList user={user} />
 		</div>
 	)
 }

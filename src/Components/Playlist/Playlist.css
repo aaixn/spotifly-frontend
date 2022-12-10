@@ -14,3 +14,7 @@
     width: 10vw;
     height: 10vw;
 }
+
+.button:hover {
+    cursor: pointer;
+}
