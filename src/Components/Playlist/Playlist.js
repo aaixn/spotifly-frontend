@@ -26,7 +26,7 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
       _id: id
     })
     const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}`)
-    setUser(updatedUser)
+    setUser(updatedUser.data)
     navigate(-1)
   }
 
