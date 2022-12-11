@@ -32,12 +32,10 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   }
 
   const submitNewName = async () => {
-    const updatedPlaylist = await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, {
+    await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, {
       name: newName
     })
-    console.log(updatedPlaylist)
     const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}`)
-    console.log(updatedUser)
     setUser(updatedUser.data)
     setEditing(false)
     getPlaylist()
