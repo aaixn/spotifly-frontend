@@ -4,6 +4,7 @@ import { IoIosAddCircle, IoIosBrush, IoMdCheckmark } from 'react-icons/io'
 import { TbPencil, TbTrash } from 'react-icons/tb'
 import { useNavigate, useParams } from 'react-router-dom'
 import AddSong from '../AddSong/AddSong'
+import MusicPlayer from '../MusicPlayer/MusicPlayer'
 import '../Playlist/Playlist.css'
 import SongList from '../SongList/SongList'
 
@@ -58,6 +59,7 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
       </div>
       <SongList playlist={playlist} />
       <AddSong playlist={playlist} user={user} />
+      <MusicPlayer />
     </div>
   )
 }
