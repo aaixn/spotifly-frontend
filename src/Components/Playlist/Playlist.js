@@ -1,14 +1,15 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
-import { IoIosAddCircle } from 'react-icons/io'
-import { IoMdRemoveCircle } from 'react-icons/io'
+import React, { useEffect, useState } from 'react'
+import { IoIosAddCircle, IoIosBrush, IoMdCheckmark } from 'react-icons/io'
+import { TbPencil, TbTrash } from 'react-icons/tb'
 import { useNavigate, useParams } from 'react-router-dom'
 import AddSong from '../AddSong/AddSong'
 import '../Playlist/Playlist.css'
 import SongList from '../SongList/SongList'
 
 export default function Playlist({ playlist, setPlaylist, user, setUser }) {
-
+  const [editing, setEditing] = useState(false)
+  const [newName, setNewName] = useState('')
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -22,7 +23,7 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   }
 
   const deletePlaylist = async () => {
-    const res = await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}/remove`, {
+    await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}/remove`, {
       _id: id
     })
     const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}`)
@@ -30,11 +31,31 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
     navigate(-1)
   }
 
+  const submitNewName = async () => {
+    const updatedPlaylist = await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, {
+      name: newName
+    })
+    console.log(updatedPlaylist)
+    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user._id}`)
+    console.log(updatedUser)
+    setUser(updatedUser.data)
+    setEditing(false)
+    getPlaylist()
+  }
+
   return (
     <div className='playlist-page'>
       <div className='playlist-info'>
         <div className='playlist-photo'><img src='' alt='playlist photo'></img></div>
-        <h1>{playlist.name + ' '}<IoMdRemoveCircle className='button delete' style={{ fontSize: '1em' }} onClick={deletePlaylist} /></h1>
+        {editing ?
+          <div className='title-editor'>
+            <input type='text' onChange={e => setNewName(e.target.value)} />
+            <IoMdCheckmark onClick={submitNewName} />
+          </div>
+          : <h1>{playlist.name + ' '}
+            <TbPencil style={{ fontSize: '1em' }} onClick={() => { setEditing(true) }} />
+            <TbTrash className='button delete' style={{ fontSize: '1em', color: 'red' }} onClick={deletePlaylist} />
+          </h1>}
         <IoIosAddCircle className='button add' style={{ fontSize: '2em' }} />
       </div>
       <SongList playlist={playlist} />
