@@ -27,9 +27,9 @@ export default function AddSong({playlist, user}) {
   const addSongToPlaylist = async (e) => {
     e.preventDefault()
     try {
-      const songToAdd = await axios.post(`http://localhost:8080/api/songs/`, {name: addSong.name, artist: [addSong.artist], album: [addSong.album], genre: [addSong.genre], spotifyID: addSong.spotifyID, duration: parseInt(addSong.duration)})
+      const songToAdd = await axios.post(`https://spotifly-backend-ga.herokuapp.com/api/songs/`, {name: addSong.name, artist: [addSong.artist], album: [addSong.album], genre: [addSong.genre], spotifyID: addSong.spotifyID, duration: parseInt(addSong.duration)})
       const targetedPlaylist = user.playlists.filter(item => item.name === addSong.playlistSelect)
-      await axios.put(`http://localhost:8080/api/playlists/${targetedPlaylist[0]._id}`, {...targetedPlaylist[0], songs: [...targetedPlaylist[0].songs, songToAdd.data._id]} )
+      await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${targetedPlaylist[0]._id}`, {...targetedPlaylist[0], songs: [...targetedPlaylist[0].songs, songToAdd.data._id]} )
     } catch (err) {
       console.log(err);
   }
