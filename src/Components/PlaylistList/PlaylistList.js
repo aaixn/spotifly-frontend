@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../PlaylistList/PlaylistList.css'
 
-export default function PlaylistList({user}) {
+export default function PlaylistList({ user }) {
+    console.log(user)
     return (
         <div className='nav-playlist-list'>
             {user.playlists.map((playlist, index) =>
