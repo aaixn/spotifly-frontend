@@ -1,7 +1,7 @@
 import React from "react";
 //import axios from "axios";
 import {useState, useEffect} from 'react'
-import {AudioPlayer} from 'react-audio-player'
+import {ReactPlayer} from 'react-player'
 import jsonp from 'jsonp';
 
 const MusicPlayer = () => {
@@ -38,7 +38,7 @@ const MusicPlayer = () => {
     //     console.log(data);
     //   }, [data]);
     
-    //   const stopSound = (index) => {
+      const stopSound = (index) => {
         // setData((arr) =>
         //   arr.map((sound, i) => {
         //     if (i === index) {
@@ -48,7 +48,7 @@ const MusicPlayer = () => {
         //     return { ...sound, play: false };
         //   })
         // );
-    //   };
+      };
     
       useEffect (() => {
         const soundcloudUrl = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/499655217&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true';
@@ -76,6 +76,7 @@ const MusicPlayer = () => {
               </>
             );
           })} */}
+          <iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/499655217&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                   {/* <button onClick={(event) => playSound(event)}>play</button> */}
           <h2>Start editing to see some magic happen!</h2>
         </div>
