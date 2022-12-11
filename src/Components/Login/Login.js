@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Login.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = ({ setUser }) => {
+    useEffect(() => {
+        window.localStorage.setItem('user', '')
+    }, [])
     const handleClick = async (e) => {
         const response = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${e.target.name}`)
         setUser(response.data)
