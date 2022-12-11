@@ -23,7 +23,7 @@ export default function SongList({playlist}) {
         try {
             const id = await playlist._id
             const updatedSongs = await playlist.songs.filter(item => item._id !== song._id)
-            await axios.put(`http://localhost:8080/api/playlists/${id}`, {songs: updatedSongs})
+            await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, {songs: updatedSongs})
         } catch(err) {
             console.log(err);
         }
