@@ -2,24 +2,32 @@ import React from "react";
 //import axios from "axios";
 import {useEffect} from 'react'
 import jsonp from 'jsonp';
+import axios from "axios";
 
-const MusicPlayer = () => {
-      useEffect (() => {
-        const soundcloudUrl = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/499655217&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true';
-        
-        jsonp(soundcloudUrl, {}, (err, data) => {
-          if (err) {
-            // Handle error
-          } else {
-            console.log(data)
-            // Use the data to create the audio player
-          }
-        });
-        })
-        
+const MusicPlayer = ({playingNow}) => {
+    
+    
+    //   useEffect ( () => {
+    //     const url = 'https://soundcloud.com/noahkahan/growing-sideways'
+        // const getTrackID = async () => {
+        //     const response = await axios.get(`https://w.soundcloud.com/player/?url=${url}`)
+        //     let trackID = response.url
+        //     console.log(trackID)
+           
+        // }
+        // console.log('useEffect')
+        // jsonp(`https://w.soundcloud.com/player/?url=${url}`, {}, (err, data) => {
+        //     if(err) {
+        //         console.log(err)
+        //     } else (
+        //         console.log(data.url, 'URL')
+        //     )
+        // })
+        // getTrackID()
+        // }, [])
       return (
         <div className="App">
-          <iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/499655217&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+          <iframe src={playingNow}></iframe>
           <h2>Start editing to see some magic happen!</h2>
         </div>
       );
