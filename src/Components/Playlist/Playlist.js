@@ -11,6 +11,7 @@ import SongList from '../SongList/SongList'
 export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   const [editing, setEditing] = useState(false)
   const [newName, setNewName] = useState('')
+  const [playingNow, setPlayingNow] = useState('')
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -62,9 +63,9 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
           </h1>}
         <IoIosAddCircle className='button add' style={{ fontSize: '2em' }} />
       </div>
-      <SongList playlist={playlist} />
+      <SongList playlist={playlist} setPlayingNow={setPlayingNow}/>
       <AddSong playlist={playlist} user={user} />
-      <MusicPlayer />
+      <MusicPlayer playingNow={playingNow} setPlayingNow={setPlayingNow}/>
     </div>
   )
 }
