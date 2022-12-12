@@ -1,4 +1,4 @@
-# Stock Series App
+# Spotifly
 
 ### Description
 
@@ -64,7 +64,11 @@ Create an account with your email and password to start streaming your favorite 
 ### Issues and Resolutions:
 
 - Error: CORS preventing audio from SoundCloud link from playing
-- Resolution: You can retrieve the link by searching the song you want on SoundClound, select share, and then embed. Take the src link to be able to play the song.
+    -  Resolution: You can retrieve the link by searching the song you want on SoundClound, select share, and then embed. Take the src link to be able to play the song.
+- Error: Cannot retrieve user data
+    - Resolution: Used the spread operator to 
+- Error: Authentication state persistance - when logout button is clicked, there is still a call to the backend to get user data
+- Resolution:
 
 ### Future Plans:
 
