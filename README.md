@@ -2,7 +2,9 @@
 
 ### Description
 
-Spotifly is a music streaming app which allows users to seamlessly create playlists, view playlists, search songs and play their favorite songs. 
+Spotifly is a music streaming app which allows users to seamlessly create playlists, view playlists, and play their favorite songs without advertisements.
+
+Create an account with your email and password to start streaming your favorite tunes!
 
 
 
@@ -56,13 +58,13 @@ Spotifly is a music streaming app which allows users to seamlessly create playli
 ### Additional Libraries
 
 
-
 ### Code Snippet:
 
 
 ### Issues and Resolutions:
 
-- Error: 
+- Error: CORS preventing audio from SoundCloud link from playing
+- Resolution: You can retrieve the link by searching the song you want on SoundClound, select share, and then embed. Take the src link to be able to play the song.
 
 ### Future Plans:
 
