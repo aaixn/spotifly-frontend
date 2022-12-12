@@ -2,7 +2,6 @@ import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import Nav from './Components/Nav/Nav';
 import Home from './Components/Home/Home';
-import Login from './Components/Login/Login';
 import { useEffect, useState } from 'react'
 import Playlist from './Components/Playlist/Playlist';
 import Form from './Components/Form/Form';
@@ -10,6 +9,7 @@ import { app } from './firebase'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 function App() {
   const [user, setUser] = useState('')
@@ -21,11 +21,14 @@ function App() {
 
   const handleAction = async (action) => {
     const authentication = getAuth()
-    if (action === 'login') {
+    if (action === 'log in') {
       try {
         const response = await signInWithEmailAndPassword(authentication, email, password)
-        navigate('/home')
         sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+        // const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
+        // setUser(userByEmail)
+        console.log('hi');
+        navigate('/home')
       } catch (err) {
         if(err.code === 'auth/wrong-password'){
           toast.error('Please check the Password');
@@ -38,8 +41,10 @@ function App() {
     if (action === 'register') {
       try {
         const response = await createUserWithEmailAndPassword(authentication, email, password)
-        navigate('/home')
         sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+        // const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
+        // setUser(userByEmail)
+        navigate('/home')
       } catch (err) {
         if (err.code === 'auth/email-already-in-use') {
           toast.error('Email Already in Use');
@@ -52,6 +57,16 @@ function App() {
   }
 
   useEffect(() => {
+    const getUser = async () => {
+      // console.log(getUser1);
+      const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
+      setUser(...userByEmail.data)
+      console.log(user);
+    }
+    getUser()
+  }, [])
+
+  useEffect(() => {
     let authToken = sessionStorage.getItem('Auth Token')
 
     if (authToken) {
@@ -60,11 +75,12 @@ function App() {
   }, [])
 
   useEffect(() => {
-    window.localStorage.setItem('user', JSON.stringify(user))
+    sessionStorage.setItem('user', JSON.stringify(user))
   }, [user])
+
   return (
     <div className='login'>
-      {user ? <Nav user={user} setUser={setUser} /> : <></>}
+      {user ? <Nav user={user} setUser={setUser} setEmail={setEmail}/> : <></>}
       <ToastContainer />
       <Routes>
         <Route path='/login' element={<Form title='Log In' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('log in')}/>} />
