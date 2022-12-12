@@ -77,5 +77,8 @@ Create an account with your email and password to start streaming your favorite 
 - Resolution:
 
 ### Future Plans:
-
+- Include a recently played section on the homepage
+- Include a recommend or "Discover" section which displays songs with a similar genre
+- Track listening statistics including how long users listen to songs and how many times they listen to artists and individual song - similar to spotify wrapped.
+- Get album cover from SoundCloud link and use it to make the default four panel playlist image
 
