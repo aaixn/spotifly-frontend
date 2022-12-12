@@ -1,9 +1,9 @@
 import React from 'react'
 import '../SongList/SongList.css'
-import {TbTrash} from 'react-icons/tb'
+import {TbTrash, TbPlayerPlay} from 'react-icons/tb'
 import axios from 'axios'
 
-export default function SongList({playlist}) {
+export default function SongList({playlist, setPlayingNow}) {
 
     const durationConvert = (duration) => {
         let minutes = Math.floor(duration/60)
@@ -28,7 +28,6 @@ export default function SongList({playlist}) {
             console.log(err);
         }
     }
-
     return (
     <div>
         <table>
@@ -44,6 +43,9 @@ export default function SongList({playlist}) {
                 return (
                     <tbody>
                         <tr>
+                            <td><TbPlayerPlay onClick={() => {
+                                setPlayingNow(song.soundcloud)
+                            }}/></td>
                             <td><span style={{fontWeight: 'bold'}}>{song.name}</span><br/>{song.artist.map((artist, index) => {return index !== song.artist.length -1 ? (`${artist}, `) : artist })}</td>
                             <td>{song.album.map((album, index) => {return index !== song.album.length -1 ? (`${album}, `) : album })}</td>
                             <td>{dateConvert(song.createdAt)}</td>
