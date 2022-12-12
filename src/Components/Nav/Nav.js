@@ -15,7 +15,7 @@ export default function Nav({ user, setUser, setEmail }) {
 
 	const handleLogout = () => {
 		sessionStorage.removeItem('Auth Token');
-			navigate('/login')
+		navigate('/login')
 		sessionStorage.removeItem('user')
 		setUser('')
 		console.log(user);
