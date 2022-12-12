@@ -4,23 +4,22 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Home({ setUser }) {
   useEffect(() => {
-    const refreshUser = JSON.parse(window.localStorage.getItem('user'))
+    const refreshUser = JSON.parse(sessionStorage.getItem('user'))
     refreshUser && setUser(refreshUser)
   }, [])
 
-  let navigate = useNavigate()
 
+  let navigate = useNavigate();
   useEffect(() => {
-    let authToken = sessionStorage.getItem('Auth Token')
+      let authToken = sessionStorage.getItem('Auth Token')
+      if (authToken) {
+          navigate('/home')
+      }
 
-    if (authToken) {
-      navigate('/home')
-    }
-
-    if (!authToken) {
-        navigate('/login')
-    }
-    }, [])
+      if (!authToken) {
+          navigate('/register')
+      }
+  }, [])
 
   return (
     <div className='home'>
