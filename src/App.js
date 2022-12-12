@@ -16,6 +16,7 @@ function App() {
   const [playlist, setPlaylist] = useState({})
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loggedIn, setLoggedIn] = useState(false)
   const navigate = useNavigate()
 
 
@@ -27,13 +28,14 @@ function App() {
         sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
         // const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
         // setUser(userByEmail)
-        console.log('hi');
+        // console.log('hi');
+        setLoggedIn(true)
         navigate('/home')
       } catch (err) {
-        if(err.code === 'auth/wrong-password'){
+        if (err.code === 'auth/wrong-password') {
           toast.error('Please check the Password');
         }
-        if(err.code === 'auth/user-not-found'){
+        if (err.code === 'auth/user-not-found') {
           toast.error('Please check the Email');
         }
       }
@@ -44,11 +46,12 @@ function App() {
         sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
         // const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
         // setUser(userByEmail)
+        setLoggedIn(true)
         navigate('/home')
       } catch (err) {
         if (err.code === 'auth/email-already-in-use') {
           toast.error('Email Already in Use');
-        } 
+        }
         if (err.code === 'auth/weak-password') {
           toast.error('Password must be at least 6 characters long')
         }
@@ -58,33 +61,34 @@ function App() {
 
   useEffect(() => {
     const getUser = async () => {
-      // console.log(getUser1);
       const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
-      setUser(...userByEmail.data)
-      console.log(user);
+      setUser({ ...userByEmail.data })
+      console.log('comp did mt');
+      console.log('email:', email, 'user:', user, 'user by email:', userByEmail.data)
     }
-    getUser()
-  }, [])
+    if (loggedIn) return
+    else getUser()
+  }, [loggedIn])
 
   useEffect(() => {
     let authToken = sessionStorage.getItem('Auth Token')
-
+    console.log('comp did mount 2, auth token:', authToken)
     if (authToken) {
       navigate('/home')
     }
   }, [])
 
-  useEffect(() => {
-    sessionStorage.setItem('user', JSON.stringify(user))
-  }, [user])
-
+  // useEffect(() => {
+  //   sessionStorage.setItem('user', JSON.stringify(user))
+  // }, [user])
+  console.log('app:', user)
   return (
     <div className='login'>
-      {user ? <Nav user={user} setUser={setUser} setEmail={setEmail}/> : <></>}
+      {loggedIn && <Nav user={user} setUser={setUser} setEmail={setEmail} />}
       <ToastContainer />
       <Routes>
-        <Route path='/login' element={<Form title='Log In' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('log in')}/>} />
-        <Route path='/register' element={<Form title='Register' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('register')}/>}/>
+        <Route path='/login' element={<Form title='Log In' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('log in')} />} />
+        <Route path='/register' element={<Form title='Register' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('register')} />} />
         <Route path='/home' element={<Home setUser={setUser} />} />
         <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} />} />
       </Routes>
