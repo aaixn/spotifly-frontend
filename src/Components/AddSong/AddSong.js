@@ -9,7 +9,7 @@ export default function AddSong({playlist, user}) {
       album: '',
       duration: '',
       genre: '',
-      spotifyID: '',
+      soundcloud: '',
       playlistSelect: ''
     }
   )
@@ -27,7 +27,7 @@ export default function AddSong({playlist, user}) {
   const addSongToPlaylist = async (e) => {
     e.preventDefault()
     try {
-      const songToAdd = await axios.post(`https://spotifly-backend-ga.herokuapp.com/api/songs/`, {name: addSong.name, artist: [addSong.artist], album: [addSong.album], genre: [addSong.genre], spotifyID: addSong.spotifyID, duration: parseInt(addSong.duration)})
+      const songToAdd = await axios.post(`https://spotifly-backend-ga.herokuapp.com/api/songs/`, {name: addSong.name, artist: [addSong.artist], album: [addSong.album], genre: [addSong.genre], soundcloud: addSong.soundcloud, duration: parseInt(addSong.duration)})
       const targetedPlaylist = user.playlists.filter(item => item.name === addSong.playlistSelect)
       await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${targetedPlaylist[0]._id}`, {...targetedPlaylist[0], songs: [...targetedPlaylist[0].songs, songToAdd.data._id]} )
     } catch (err) {
@@ -42,7 +42,7 @@ export default function AddSong({playlist, user}) {
             <input className='artist-input' placeholder='Artist' name='artist' value={addSong.artist} onChange={handleChange}></input>
             <input className='album-input' placeholder='Album Title' name='album' value={addSong.album} onChange={handleChange}></input>
             <input className='genre-input' placeholder='Genre' name='genre' value={addSong.genre} onChange={handleChange}></input>
-            <input className='spotifyID-input' placeholder='Spotify ID' name='spotifyID' value={addSong.spotifyID} onChange={handleChange}></input>
+            <input className='soundcloud-input' placeholder='SoundCloud URL' name='soundcloud' value={addSong.soundcloud} onChange={handleChange}></input>
             <input className='duration-input' placeholder='Duration in Seconds' name='duration' value={addSong.duration} onChange={handleChange}></input>
             <label for='playlistSelect'></label>
             <select name='playlistSelect' onChange={handleChange}>
