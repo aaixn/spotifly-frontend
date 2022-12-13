@@ -1,7 +1,10 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCTLA9PKEdHM4ppHfJCkL2m6HsWJgnEqmM",
+    apiKey: process.env.API_KEY,
     authDomain: "spotifly-2ef38.firebaseapp.com",
     projectId: "spotifly-2ef38",
     storageBucket: "spotifly-2ef38.appspot.com",
@@ -10,4 +13,3 @@ const firebaseConfig = {
   };
 
 export const app = initializeApp(firebaseConfig);
-
