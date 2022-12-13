@@ -42,11 +42,13 @@ Create an account with your email and password to start streaming your favorite 
 | Home       | Provides the home page information                           |
 | AddSong    | Form allowing users to add songs to playlists           |
 | Login      | Contains user logins with links to their user data                            |
-| MusicPlayer     | Plays music when a song is selected                      |
+| MusicPlayer     | Plays music when play button is clicked                     |
 | Nav        | Displays nav bar options                                                |
 | Playlist | Allows users to view all playlists                                      |
 | PlaylistList  | Users can view playlists                                |
 | SongList | View songs in a selected playlist |
+| Button | Button to select either log in or register depending on if the user has an email account |
+| Form | Log in or register form depending on if the user has an email account |
 
 ### Time Frames:
 
