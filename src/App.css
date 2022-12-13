@@ -1,10 +1,8 @@
-*{
-  margin: 0
-}
-.login {
-  /* text-align: center; */
-  display: flex;
-  align-content: center;
-  justify-content: space-evenly;
+@font-face {
+  font-family: spotify;
+  src: url(./Fonts/Gotham-Bold.otf);
 }
 
+.app {
+  font-family: spotify, sans-serif;
+}
