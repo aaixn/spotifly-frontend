@@ -57,10 +57,9 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
             <input type='text' onChange={e => setNewName(e.target.value)} />
             <IoMdCheckmark onClick={submitNewName} />
           </div>
-          : <h1>{playlist.name + ' '}
-            <TbPencil style={{ fontSize: '1em' }} onClick={() => { setEditing(true) }} />
-            <TbTrash className='delete-playlist' style={{ fontSize: '1em', color: 'red' }} onClick={deletePlaylist} />
-          </h1>}
+          : <h1>{playlist.name + ' '}</h1>}
+        <TbPencil className='edit-playlist-name' onClick={() => { setEditing(true) }} />
+        <TbTrash className='delete-playlist' style={{ color: 'red' }} onClick={deletePlaylist} />
         <IoIosAddCircle className='add-song' style={{ fontSize: '2em', color:'#1bd760' }}/>
       </div>
       <SongList user={user} setUser={setUser} playlist={playlist} setPlayingNow={setPlayingNow} />
