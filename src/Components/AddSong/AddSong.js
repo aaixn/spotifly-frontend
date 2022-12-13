@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { IoIosAddCircle } from 'react-icons/io'
 
-export default function AddSong({ playlist, user }) {
+export default function AddSong({ playlist, user, setUser }) {
   const [addSong, setAddSong] = useState(
     {
       name: '',
@@ -13,11 +14,28 @@ export default function AddSong({ playlist, user }) {
       playlistSelect: ''
     }
   )
+  const [matchingSongs, setMatchingSongs] = useState([])
+  const [allSongs, setAllSongs] = useState([])
   const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
+
+  useEffect(() => {
+    const getAllSongs = async () => {
+      const response = await axios.get('https://spotifly-backend-ga.herokuapp.com/api/songs/', header)
+      setAllSongs(response.data)
+    }
+    getAllSongs()
+  }, [])
 
   useEffect(() => {
     setAddSong({ ...addSong, playlistSelect: playlist.name })
   }, [playlist])
+
+  useEffect(() => {
+    console.log(addSong.name)
+    addSong.name === ''
+      ? setMatchingSongs([])
+      : setMatchingSongs(allSongs.filter(song => song.name.toLowerCase().startsWith(addSong.name.toLowerCase())))
+  }, [addSong])
 
   const handleChange = (e) => {
     const addedSong = { ...addSong }
@@ -39,30 +57,57 @@ export default function AddSong({ playlist, user }) {
         }, header)
       const targetedPlaylist = user.playlists.filter(item => item.name === addSong.playlistSelect)
       await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${targetedPlaylist[0]._id}`, { ...targetedPlaylist[0], songs: [...targetedPlaylist[0].songs, songToAdd.data._id] }, header)
+      const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`, header)
+      setUser(updatedUser.data)
     } catch (err) {
       console.log(err);
     }
   }
+
+  const addExistingSong = async (song) => {
+    const targetedPlaylist = user.playlists.filter(item => item.name === addSong.playlistSelect)
+    await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${targetedPlaylist[0]._id}/add`, {
+      _id: song._id
+    }, header)
+    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`, header)
+    setUser(updatedUser.data)
+    setAddSong({
+      name: '',
+      artist: '',
+      album: '',
+      duration: '',
+      genre: '',
+      soundcloud: '',
+      playlistSelect: ''
+    })
+    setMatchingSongs([])
+  }
+
   return (
-    <div>
-      <form>
-        <h1>Add a Song to a Playlist</h1>
-        <input className='name-input' placeholder='Song Title' name='name' value={addSong.name} onChange={handleChange}></input>
-        <input className='artist-input' placeholder='Artist' name='artist' value={addSong.artist} onChange={handleChange}></input>
-        <input className='album-input' placeholder='Album Title' name='album' value={addSong.album} onChange={handleChange}></input>
-        <input className='genre-input' placeholder='Genre' name='genre' value={addSong.genre} onChange={handleChange}></input>
-        <input className='soundcloud-input' placeholder='SoundCloud URL' name='soundcloud' value={addSong.soundcloud} onChange={handleChange}></input>
-        <input className='duration-input' placeholder='Duration in Seconds' name='duration' value={addSong.duration} onChange={handleChange}></input>
-        <label for='playlistSelect'></label>
-        <select name='playlistSelect' onChange={handleChange}>
-          {user ? user.playlists.map((item) => {
-            return (
-              item.name === playlist.name ? <option value={item.name} selected>{item.name}</option> : <option value={item.name}>{item.name}</option>
-            )
-          }) : null}
-        </select>
-        <button onClick={addSongToPlaylist}>Add To Playlist</button>
-      </form>
-    </div>
+    <>
+      <div>
+        <form>
+          <h1>Add a Song to a Playlist</h1>
+          <input className='name-input' placeholder='Song Title' name='name' value={addSong.name} onChange={handleChange}></input>
+          <input className='artist-input' placeholder='Artist' name='artist' value={addSong.artist} onChange={handleChange}></input>
+          <input className='album-input' placeholder='Album Title' name='album' value={addSong.album} onChange={handleChange}></input>
+          <input className='genre-input' placeholder='Genre' name='genre' value={addSong.genre} onChange={handleChange}></input>
+          <input className='soundcloud-input' placeholder='SoundCloud URL' name='soundcloud' value={addSong.soundcloud} onChange={handleChange}></input>
+          <input className='duration-input' placeholder='Duration in Seconds' name='duration' value={addSong.duration} onChange={handleChange}></input>
+          <label for='playlistSelect'></label>
+          <select name='playlistSelect' onChange={handleChange}>
+            {user ? user.playlists.map((item) => {
+              return (
+                item.name === playlist.name ? <option value={item.name} selected>{item.name}</option> : <option value={item.name}>{item.name}</option>
+              )
+            }) : null}
+          </select>
+          <button onClick={addSongToPlaylist}>Add To Playlist</button>
+        </form>
+      </div>
+      <ul className='search-results'>
+        {matchingSongs.map(song => <li style={{ listStyle: 'none' }}>{`${song.name} - ${song.artist} - ${song.album}`}<IoIosAddCircle onClick={() => { addExistingSong(song) }} /></li>)}
+      </ul>
+    </>
   )
 }
