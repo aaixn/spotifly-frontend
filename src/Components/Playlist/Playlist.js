@@ -55,9 +55,9 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
           </div>
           : <h1>{playlist.name + ' '}
             <TbPencil style={{ fontSize: '1em' }} onClick={() => { setEditing(true) }} />
-            <TbTrash className='button delete' style={{ fontSize: '1em', color: 'red' }} onClick={deletePlaylist} />
+            <TbTrash className='delete-playlist' style={{ fontSize: '1em', color: 'red' }} onClick={deletePlaylist} />
           </h1>}
-        <IoIosAddCircle className='button add' style={{ fontSize: '2em' }} />
+        <IoIosAddCircle className='add-song' style={{ fontSize: '2em', color:'#1bd760' }}/>
       </div>
       <SongList playlist={playlist} setPlayingNow={setPlayingNow} />
       <AddSong playlist={playlist} user={user} />
