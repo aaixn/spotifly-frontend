@@ -22,3 +22,8 @@
     padding: 10px 20px;
     font-family: spotify, sans-serif;
 }
+
+.sign-buttons > button:hover {
+    background-color: black;
+    color: #1bd760;
+}
