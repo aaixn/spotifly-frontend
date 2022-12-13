@@ -58,10 +58,10 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
             <IoMdCheckmark onClick={submitNewName} />
           </div>
           : <h1>{playlist.name + ' '}
-            <TbPencil style={{ fontSize: '1em' }} onClick={() => { setEditing(true) }} />
-            <TbTrash className='delete-playlist' style={{ fontSize: '1em', color: 'red' }} onClick={deletePlaylist} />
+            <TbPencil style={{ fontSize: '1em', color: '#1BD760' }} onClick={() => { setEditing(true) }} className='pencil button' />
+            <TbTrash className='delete button' style={{ fontSize: '1em', color: 'white' }} onClick={deletePlaylist} />
           </h1>}
-        <IoIosAddCircle className='add-song' style={{ fontSize: '2em', color:'#1bd760' }}/>
+        <IoIosAddCircle className='addsong button' style={{ fontSize: '2em', color: '#1bd760' }} />
       </div>
       <SongList user={user} setUser={setUser} playlist={playlist} setPlayingNow={setPlayingNow} />
       <AddSong playlist={playlist} user={user} setUser={setUser} />
