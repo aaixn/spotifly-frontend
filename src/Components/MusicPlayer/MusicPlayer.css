@@ -1,0 +1,12 @@
+.music-player {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.music {
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 50%;
+    height: 500px;
+}

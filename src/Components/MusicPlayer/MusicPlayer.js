@@ -1,9 +1,10 @@
 import React from "react"
+import './MusicPlayer.css'
 
 const MusicPlayer = ({ playingNow }) => {
   return (
     <div className="music-player">
-      <iframe src={playingNow}></iframe>
+      <iframe className='music' src={playingNow}></iframe>
     </div>
   );
 }
