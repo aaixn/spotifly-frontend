@@ -6,15 +6,15 @@ import '../Nav/Nav.css'
 import PlaylistList from '../PlaylistList/PlaylistList'
 import axios from 'axios'
 
-export default function Nav({ user, setUser, setEmail, header }) {
+export default function Nav({ user, setUser, setEmail, header, setHeader }) {
 	const navigate = useNavigate()
 	const handleLogout = () => {
 		sessionStorage.removeItem('Auth Token');
-		navigate('/login')
 		sessionStorage.removeItem('user')
 		setUser('')
-		console.log(user);
 		setEmail('')
+		setHeader({})
+		navigate('/login')
 	}
 	const handleAddPlaylist = async () => {
 		const newPlaylist = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/playlists', {

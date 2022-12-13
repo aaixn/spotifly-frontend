@@ -31,7 +31,7 @@ function App() {
         try {
           const response = await signInWithEmailAndPassword(authentication, email, password)
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-          setHeader({headers: {authorization: `bearer ${response._tokenResponse.refreshToken}`}})
+          setHeader({ headers: { authorization: `bearer ${response._tokenResponse.refreshToken}` } })
           const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`, header)
           setUser(userByEmail.data)
           setLoggingIn(false)
@@ -49,7 +49,7 @@ function App() {
         try {
           const response = await createUserWithEmailAndPassword(authentication, email, password)
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-          setHeader({headers: {authorization: `bearer ${response._tokenResponse.refreshToken}`}})
+          setHeader({ headers: { authorization: `bearer ${response._tokenResponse.refreshToken}` } })
           const newUser = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/users/', {
             email: email,
             playlists: []
@@ -81,13 +81,13 @@ function App() {
 
   return (
     <div className='login'>
-      {user && <Nav user={user} setUser={setUser} setEmail={setEmail} header={header}/>}
+      {user && <Nav user={user} setUser={setUser} setEmail={setEmail} header={header} setHeader={setHeader} />}
       <ToastContainer />
       <Routes>
         <Route path='/login' element={<Form title='Log In' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('log in')} />} />
         <Route path='/register' element={<Form title='Register' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('register')} />} />
-        <Route path='/home' element={<Home setUser={setUser} header={header}/>} />
-        <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} header={header}/>} />
+        <Route path='/home' element={<Home setUser={setUser} header={header} />} />
+        <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} header={header} />} />
       </Routes>
     </div>
   );
