@@ -2,9 +2,16 @@
 
 ### Description
 
-Spotifly is a music streaming app which allows users to seamlessly create playlists, view playlists, and play their favorite songs without advertisements.
+Spotifly is a music streaming app which allows users to seamlessly view playlists, create new playlists, add songs to their playlists and play their favorite songs without advertisements.
 
 Create an account with your email and password to start streaming your favorite tunes!
+
+To add a song, input all the required information on the Add Song form. In order to retrieve the SoundCloud URL: 
+1. Search the song you want on SoundCloud
+2. Select Share
+3. Select embed
+4. In the code field, copy the src link
+5. Past the src link to the SoundCloud URL input field
 
 
 ### Wireframe and React Componenet Hierarchy
@@ -84,4 +91,5 @@ Create an account with your email and password to start streaming your favorite 
 - Include a recommend or "Discover" section which displays songs with a similar genre
 - Track listening statistics including how long users listen to songs and how many times they listen to artists and individual song - similar to spotify wrapped.
 - Get album cover from SoundCloud link and use it to make the default four panel playlist image
+- Create a more seamless process to get the SoundCloud URL
 
