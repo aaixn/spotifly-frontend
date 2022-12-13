@@ -1,6 +1,5 @@
 .music-player {
     display: flex;
-    border: 2px solid orange;
     align-items: center;
     margin-top: 20px;
 }
@@ -8,4 +7,6 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    width: 50%;
+    height: 500px;
 }
