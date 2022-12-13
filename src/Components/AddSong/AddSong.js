@@ -1,5 +1,6 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import './AddSong.css'
+import axios from 'axios'
 import { IoIosAddCircle } from 'react-icons/io'
 
 export default function AddSong({ playlist, user, setUser }) {
@@ -85,7 +86,7 @@ export default function AddSong({ playlist, user, setUser }) {
   return (
     <div className='add-song'>
       <div>
-        <form>
+        <form className='add-song-form'>
           <h1>Add a Song to a Playlist</h1>
           <input className='name-input' placeholder='Song Title' name='name' value={addSong.name} onChange={handleChange}></input>
           <input className='artist-input' placeholder='Artist' name='artist' value={addSong.artist} onChange={handleChange}></input>
@@ -93,7 +94,6 @@ export default function AddSong({ playlist, user, setUser }) {
           <input className='genre-input' placeholder='Genre' name='genre' value={addSong.genre} onChange={handleChange}></input>
           <input className='soundcloud-input' placeholder='SoundCloud URL' name='soundcloud' value={addSong.soundcloud} onChange={handleChange}></input>
           <input className='duration-input' placeholder='Duration in Seconds' name='duration' value={addSong.duration} onChange={handleChange}></input>
-          <label for='playlistSelect'></label>
           <select name='playlistSelect' onChange={handleChange}>
             {user ? user.playlists.map((item) => {
               return (

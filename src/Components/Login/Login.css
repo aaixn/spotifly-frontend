@@ -9,7 +9,12 @@
 .heading-container {
     font-size: 4em;
 }
-
+#email {
+    color: white;
+}
+#password {
+    color: white
+}
 .sign-buttons {
     display: flex;
     justify-content: space-between;

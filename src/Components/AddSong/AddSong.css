@@ -5,3 +5,32 @@
 .add-song {
     width: 70%
 }
+
+.add-song-form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 0.5em;
+    align-content: center;
+    text-align: center;
+}
+
+.add-song-form > input, select {
+    height: 2em;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+select {
+    height: 2.5em;
+}
+
+.add-to-playlist-button {
+    width: 50%;
+    font-family: spotify, sans-serif;
+    align-self: center;
+    background-color: #1bd760;
+    border-radius: 20px;
+    border: none;
+    padding: 1em;
+}
