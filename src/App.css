@@ -8,6 +8,10 @@
   color: white;
 }
 
-button {
+.button {
   cursor: pointer;
+}
+
+.app {
+  display: flex;
 }

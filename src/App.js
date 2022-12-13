@@ -105,7 +105,7 @@ function App() {
         <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} />} />
       </Routes>
     </div>
-  );
+  )
 }
 
 export default App;

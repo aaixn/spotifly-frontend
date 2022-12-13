@@ -84,7 +84,7 @@ export default function AddSong({ playlist, user, setUser }) {
   }
 
   return (
-    <>
+    <div className='add-song'>
       <div>
         <form className='add-song-form'>
           <h1>Add a Song to a Playlist</h1>
@@ -101,12 +101,12 @@ export default function AddSong({ playlist, user, setUser }) {
               )
             }) : null}
           </select>
-          <button onClick={addSongToPlaylist} className='add-to-playlist-button'>Add To Playlist</button>
+          <IoIosAddCircle onClick={addSongToPlaylist} className='add button' style={{ color: '#1BD760' }} />
         </form>
       </div>
       <ul className='search-results'>
         {matchingSongs.map(song => <li style={{ listStyle: 'none' }}>{`${song.name} - ${song.artist} - ${song.album}`}<IoIosAddCircle onClick={() => { addExistingSong(song) }} /></li>)}
       </ul>
-    </>
+    </div>
   )
 }

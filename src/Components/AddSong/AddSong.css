@@ -1,3 +1,11 @@
+.add {
+    color: #1BD760
+}
+
+.add-song {
+    width: 70%
+}
+
 .add-song-form {
     display: flex;
     flex-direction: column;
@@ -26,4 +34,3 @@ select {
     border: none;
     padding: 1em;
 }
-
