@@ -1,11 +1,21 @@
 import React, { useEffect } from 'react'
 import '../Home/Home.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home({ setUser }) {
+
+  let navigate = useNavigate();
   useEffect(() => {
-    const refreshUser = JSON.parse(window.localStorage.getItem('user'))
-    refreshUser && setUser(refreshUser)
+    let authToken = sessionStorage.getItem('Auth Token')
+    if (authToken) {
+      navigate('/home')
+    }
+
+    // if (!authToken) {
+    //     navigate('/register')
+    // }
   }, [])
+
   return (
     <div className='home'>
       <div className='announcement'></div>
