@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '../Button/Button';
-import './Form.css'
+import './Login.css'
 
-export default function Form({ title, setEmail, setPassword, handleAction }) {
-    const navigate = useNavigate()
+export default function Login({ setEmail, setPassword, handleLogin }) {
     return (
         <div className='sign-page'>
             <div className="heading-container">
@@ -26,8 +24,8 @@ export default function Form({ title, setEmail, setPassword, handleAction }) {
                 <h4>Password</h4>
                 <TextField id="password" label="Enter Your Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
                 <div className='sign-buttons'>
-                    <Button title={title} handleAction={handleAction} />
-                    {title === 'Log In' && <Button title='Sign Up' handleAction={() => { navigate('/register') }} />}
+                    <Button title='Log In' handleAction={() => { handleLogin('log in') }} />
+                    <Button title='Sign Up' handleAction={() => { handleLogin('register') }} />
                 </div>
             </Box>
         </div>
