@@ -10,6 +10,8 @@ import SongList from '../SongList/SongList'
 
 export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   const [editing, setEditing] = useState(false)
+  const [editingImage, setEditingImage] = useState(false)
+  const [newImage, setNewImage] = useState('')
   const [newName, setNewName] = useState('')
   const [playingNow, setPlayingNow] = useState('')
   const { id } = useParams()
@@ -48,14 +50,37 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
     getPlaylist()
   }
 
+  const submitNewImage = async () => {
+    await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, {
+      image: newImage
+    }, header)
+    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`, header)
+    setUser(updatedUser.data)
+    setEditingImage(false)
+    getPlaylist()
+  }
+
+  useEffect(() => {
+    console.log('editing status: ', editingImage)
+  }, [editingImage])
+
   return (
     <div className='playlist-page'>
       <div className='playlist-info'>
-        <div className='playlist-photo'><img src='' alt='playlist photo'></img></div>
+        <div>
+          <div className='playlist-photo' >
+            <img className='playlist-img' src={playlist.image} alt='playlist cover art' />
+            <TbPencil className='image-edit button' onClick={() => { setEditingImage(true) }} />
+          </div>
+          {editingImage && <div className='editing-image'>
+            <input type='text' onChange={e => setNewImage(e.target.value)} />
+            <IoMdCheckmark onClick={submitNewImage} className='button' />
+          </div>}
+        </div>
         {editing ?
           <div className='title-editor'>
             <input type='text' onChange={e => setNewName(e.target.value)} />
-            <IoMdCheckmark onClick={submitNewName} />
+            <IoMdCheckmark onClick={submitNewName} className='button' />
           </div>
           : <h1>{playlist.name + ' '}
             <TbPencil style={{ fontSize: '1em', color: '#1BD760' }} onClick={() => { setEditing(true) }} className='pencil button' />
