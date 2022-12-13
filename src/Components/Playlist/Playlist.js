@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { IoIosAddCircle, IoIosBrush, IoMdCheckmark } from 'react-icons/io'
+import { IoIosAddCircle, IoMdCheckmark } from 'react-icons/io'
 import { TbPencil, TbTrash } from 'react-icons/tb'
 import { useNavigate, useParams } from 'react-router-dom'
 import AddSong from '../AddSong/AddSong'
@@ -19,6 +19,10 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   useEffect(() => {
     getPlaylist()
   }, [id])
+
+  useEffect(() => {
+    getPlaylist()
+  }, [user])
 
   const getPlaylist = async () => {
     const playlistInfo = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, header)
@@ -59,8 +63,8 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
           </h1>}
         <IoIosAddCircle className='add-song' style={{ fontSize: '2em', color:'#1bd760' }}/>
       </div>
-      <SongList playlist={playlist} setPlayingNow={setPlayingNow} />
-      <AddSong playlist={playlist} user={user} />
+      <SongList user={user} setUser={setUser} playlist={playlist} setPlayingNow={setPlayingNow} />
+      <AddSong playlist={playlist} user={user} setUser={setUser} />
       <MusicPlayer playingNow={playingNow} setPlayingNow={setPlayingNow} />
     </div>
   )

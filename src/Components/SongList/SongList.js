@@ -3,7 +3,7 @@ import '../SongList/SongList.css'
 import { TbTrash, TbPlayerPlay } from 'react-icons/tb'
 import axios from 'axios'
 
-export default function SongList({ playlist, setPlayingNow }) {
+export default function SongList({ playlist, setPlayingNow, user, setUser }) {
     const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
 
     const durationConvert = (duration) => {
@@ -25,6 +25,8 @@ export default function SongList({ playlist, setPlayingNow }) {
             const id = await playlist._id
             const updatedSongs = await playlist.songs.filter(item => item._id !== song._id)
             await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, { songs: updatedSongs }, header)
+            const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`, header)
+            setUser(updatedUser.data)
         } catch (err) {
             console.log(err);
         }
