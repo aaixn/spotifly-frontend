@@ -31,7 +31,6 @@ export default function AddSong({ playlist, user, setUser }) {
   }, [playlist])
 
   useEffect(() => {
-    console.log(addSong.name)
     addSong.name === ''
       ? setMatchingSongs([])
       : setMatchingSongs(allSongs.filter(song => song.name.toLowerCase().startsWith(addSong.name.toLowerCase())))

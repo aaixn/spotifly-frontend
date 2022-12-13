@@ -86,7 +86,8 @@ function App() {
   }, [loggingIn])
 
   useEffect(() => {
-    const refreshUser = JSON.parse(localStorage.getItem('user'))
+    let refreshUser
+    if (localStorage.getItem('user') !== 'undefined') refreshUser = JSON.parse(localStorage.getItem('user'))
     refreshUser && setUser(refreshUser)
   }, [])
 
