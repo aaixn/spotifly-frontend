@@ -64,9 +64,7 @@ Create an account with your email and password to start streaming your favorite 
 | User Authentication | M | 2 hours | 5 hours | 5 hours |
 
 ### Additional Libraries
-
-
-### Code Snippet:
+- Firebase User Authentication
 
 
 ### Issues and Resolutions:
