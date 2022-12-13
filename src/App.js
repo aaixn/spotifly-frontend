@@ -17,6 +17,7 @@ function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loggingIn, setLoggingIn] = useState('')
+  const [header, setHeader] = useState({})
   const navigate = useNavigate()
 
   const handleAction = async (action) => {
@@ -30,7 +31,8 @@ function App() {
         try {
           const response = await signInWithEmailAndPassword(authentication, email, password)
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-          const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
+          setHeader({headers: {authorization: `bearer ${response._tokenResponse.refreshToken}`}})
+          const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`, header)
           setUser(userByEmail.data)
           setLoggingIn(false)
           navigate('/home')
@@ -47,10 +49,11 @@ function App() {
         try {
           const response = await createUserWithEmailAndPassword(authentication, email, password)
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+          setHeader({headers: {authorization: `bearer ${response._tokenResponse.refreshToken}`}})
           const newUser = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/users/', {
             email: email,
             playlists: []
-          })
+          }, header)
           setUser(newUser.data)
           setLoggingIn(false)
           navigate('/home')
