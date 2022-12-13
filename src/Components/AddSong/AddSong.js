@@ -103,7 +103,7 @@ export default function AddSong({ playlist, user, setUser }) {
               )
             }) : null}
           </select>
-          <IoIosAddCircle onClick={addSongToPlaylist} className='add button' style={{ color: '#1BD760' }} />
+          <button className='add-to-playlist-button'>Add to Playlist</button>
         </form>
       </div>
       <ul className='search-results'>
