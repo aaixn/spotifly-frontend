@@ -68,17 +68,14 @@ function App() {
   }, [loggingIn])
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem('Auth Token')
-    console.log('comp did mount 2, auth token:', authToken)
-    if (authToken) {
-      navigate('/home')
-    }
+    const refreshUser = JSON.parse(localStorage.getItem('user'))
+    refreshUser && setUser(refreshUser)
   }, [])
 
-  // useEffect(() => {
-  //   sessionStorage.setItem('user', JSON.stringify(user))
-  // }, [user])
-  console.log('app:', user)
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user))
+  }, [user])
+
   return (
     <div className='login'>
       {user && <Nav user={user} setUser={setUser} setEmail={setEmail} />}

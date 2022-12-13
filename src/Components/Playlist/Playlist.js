@@ -15,10 +15,10 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const refreshUser = JSON.parse(sessionStorage.getItem('user'))
-    refreshUser && setUser(refreshUser)
-  }, [])
+  // useEffect(() => {
+  //   const refreshUser = JSON.parse(sessionStorage.getItem('user'))
+  //   refreshUser && setUser(refreshUser)
+  // }, [])
 
   useEffect(() => {
     getPlaylist()

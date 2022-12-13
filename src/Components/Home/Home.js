@@ -3,22 +3,17 @@ import '../Home/Home.css'
 import { useNavigate } from 'react-router-dom'
 
 export default function Home({ setUser }) {
-  useEffect(() => {
-    const refreshUser = JSON.parse(sessionStorage.getItem('user'))
-    refreshUser && setUser(refreshUser)
-  }, [])
-
 
   let navigate = useNavigate();
   useEffect(() => {
-      let authToken = sessionStorage.getItem('Auth Token')
-      if (authToken) {
-          navigate('/home')
-      }
+    let authToken = sessionStorage.getItem('Auth Token')
+    if (authToken) {
+      navigate('/home')
+    }
 
-      if (!authToken) {
-          navigate('/register')
-      }
+    // if (!authToken) {
+    //     navigate('/register')
+    // }
   }, [])
 
   return (
