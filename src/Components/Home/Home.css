@@ -1,15 +1,30 @@
 .home {
-    width: 85vw;
+    width: 85%;
+    padding: 30px;
 }
 
 .playlist-grid {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
+    width: 85%;
 }
 
 .playlist-grid-item {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.addplaylist {
+    color: #1BD760;
+    font-size: 50px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.addcontainer {
+    line-height: 300px;
 }
