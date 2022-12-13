@@ -77,7 +77,7 @@ function App() {
   }, [user])
 
   return (
-    <div className='login'>
+    <div className='app'>
       {user && <Nav user={user} setUser={setUser} setEmail={setEmail} />}
       <ToastContainer />
       <Routes>
