@@ -30,10 +30,10 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   }
 
   const deletePlaylist = async () => {
-    await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.username}/remove`, {
+    await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}/remove`, {
       _id: id
     })
-    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.username}`)
+    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`)
     setUser(updatedUser.data)
     navigate(-1)
   }
@@ -42,7 +42,7 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
     await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, {
       name: newName
     })
-    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.username}`)
+    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`)
     setUser(updatedUser.data)
     setEditing(false)
     getPlaylist()
@@ -63,9 +63,9 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
           </h1>}
         <IoIosAddCircle className='button add' style={{ fontSize: '2em' }} />
       </div>
-      <SongList playlist={playlist} setPlayingNow={setPlayingNow}/>
+      <SongList playlist={playlist} setPlayingNow={setPlayingNow} />
       <AddSong playlist={playlist} user={user} />
-      <MusicPlayer playingNow={playingNow} setPlayingNow={setPlayingNow}/>
+      <MusicPlayer playingNow={playingNow} setPlayingNow={setPlayingNow} />
     </div>
   )
 }
