@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-export default function AddSong({ playlist, user, header }) {
+export default function AddSong({ playlist, user }) {
   const [addSong, setAddSong] = useState(
     {
       name: '',
@@ -13,6 +13,7 @@ export default function AddSong({ playlist, user, header }) {
       playlistSelect: ''
     }
   )
+  const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
 
   useEffect(() => {
     setAddSong({ ...addSong, playlistSelect: playlist.name })

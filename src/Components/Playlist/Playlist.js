@@ -8,17 +8,13 @@ import MusicPlayer from '../MusicPlayer/MusicPlayer'
 import '../Playlist/Playlist.css'
 import SongList from '../SongList/SongList'
 
-export default function Playlist({ playlist, setPlaylist, user, setUser, header }) {
+export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   const [editing, setEditing] = useState(false)
   const [newName, setNewName] = useState('')
   const [playingNow, setPlayingNow] = useState('')
   const { id } = useParams()
   const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   const refreshUser = JSON.parse(sessionStorage.getItem('user'))
-  //   refreshUser && setUser(refreshUser)
-  // }, [])
+  const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
 
   useEffect(() => {
     getPlaylist()
@@ -63,8 +59,8 @@ export default function Playlist({ playlist, setPlaylist, user, setUser, header 
           </h1>}
         <IoIosAddCircle className='button add' style={{ fontSize: '2em' }} />
       </div>
-      <SongList playlist={playlist} setPlayingNow={setPlayingNow} header={header} />
-      <AddSong playlist={playlist} user={user} header={header} />
+      <SongList playlist={playlist} setPlayingNow={setPlayingNow} />
+      <AddSong playlist={playlist} user={user} />
       <MusicPlayer playingNow={playingNow} setPlayingNow={setPlayingNow} />
     </div>
   )

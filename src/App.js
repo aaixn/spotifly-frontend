@@ -17,7 +17,6 @@ function App() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loggingIn, setLoggingIn] = useState('')
-  const [header, setHeader] = useState({})
   const navigate = useNavigate()
 
   const handleAction = async (action) => {
@@ -31,8 +30,8 @@ function App() {
         try {
           const response = await signInWithEmailAndPassword(authentication, email, password)
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-          setHeader({ headers: { authorization: `bearer ${response._tokenResponse.refreshToken}` } })
-          const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`, header)
+          sessionStorage.setItem('ID Token', response._tokenResponse.idToken)
+          const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`, { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } })
           setUser(userByEmail.data)
           setLoggingIn(false)
           navigate('/home')
@@ -49,11 +48,11 @@ function App() {
         try {
           const response = await createUserWithEmailAndPassword(authentication, email, password)
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-          setHeader({ headers: { authorization: `bearer ${response._tokenResponse.refreshToken}` } })
+          sessionStorage.setItem('ID Token', response._tokenResponse.idToken)
           const newUser = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/users/', {
             email: email,
             playlists: []
-          }, header)
+          }, { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } })
           setUser(newUser.data)
           setLoggingIn(false)
           navigate('/home')
@@ -81,13 +80,13 @@ function App() {
 
   return (
     <div className='login'>
-      {user && <Nav user={user} setUser={setUser} setEmail={setEmail} header={header} setHeader={setHeader} />}
+      {user && <Nav user={user} setUser={setUser} setEmail={setEmail} />}
       <ToastContainer />
       <Routes>
         <Route path='/login' element={<Form title='Log In' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('log in')} />} />
         <Route path='/register' element={<Form title='Register' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('register')} />} />
-        <Route path='/home' element={<Home setUser={setUser} header={header} />} />
-        <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} header={header} />} />
+        <Route path='/home' element={<Home setUser={setUser} />} />
+        <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} />} />
       </Routes>
     </div>
   );

@@ -6,14 +6,15 @@ import '../Nav/Nav.css'
 import PlaylistList from '../PlaylistList/PlaylistList'
 import axios from 'axios'
 
-export default function Nav({ user, setUser, setEmail, header, setHeader }) {
+export default function Nav({ user, setUser, setEmail }) {
 	const navigate = useNavigate()
+	const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
 	const handleLogout = () => {
-		sessionStorage.removeItem('Auth Token');
+		sessionStorage.removeItem('Auth Token')
 		sessionStorage.removeItem('user')
+		sessionStorage.removeItem('ID Token')
 		setUser('')
 		setEmail('')
-		setHeader({})
 		navigate('/login')
 	}
 	const handleAddPlaylist = async () => {
