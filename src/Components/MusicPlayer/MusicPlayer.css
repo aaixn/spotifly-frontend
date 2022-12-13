@@ -1,6 +1,11 @@
 .music-player {
-
+    display: flex;
+    border: 2px solid orange;
+    align-items: center;
+    margin-top: 20px;
 }
 .music {
-    
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
