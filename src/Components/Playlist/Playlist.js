@@ -63,8 +63,8 @@ export default function Playlist({ playlist, setPlaylist, user, setUser, header 
           </h1>}
         <IoIosAddCircle className='button add' style={{ fontSize: '2em' }} />
       </div>
-      <SongList playlist={playlist} setPlayingNow={setPlayingNow} />
-      <AddSong playlist={playlist} user={user} />
+      <SongList playlist={playlist} setPlayingNow={setPlayingNow} header={header} />
+      <AddSong playlist={playlist} user={user} header={header} />
       <MusicPlayer playingNow={playingNow} setPlayingNow={setPlayingNow} />
     </div>
   )

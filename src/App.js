@@ -81,13 +81,13 @@ function App() {
 
   return (
     <div className='login'>
-      {user && <Nav user={user} setUser={setUser} setEmail={setEmail} />}
+      {user && <Nav user={user} setUser={setUser} setEmail={setEmail} header={header}/>}
       <ToastContainer />
       <Routes>
         <Route path='/login' element={<Form title='Log In' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('log in')} />} />
         <Route path='/register' element={<Form title='Register' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('register')} />} />
-        <Route path='/home' element={<Home setUser={setUser} />} />
-        <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} />} />
+        <Route path='/home' element={<Home setUser={setUser} header={header}/>} />
+        <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} header={header}/>} />
       </Routes>
     </div>
   );
