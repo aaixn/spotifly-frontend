@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './AddSong.css'
 import axios from 'axios'
 import { IoIosAddCircle } from 'react-icons/io'
+import TextField from '@mui/material'
 
 export default function AddSong({ playlist, user, setUser }) {
   const [addSong, setAddSong] = useState(
@@ -92,8 +93,9 @@ export default function AddSong({ playlist, user, setUser }) {
           <input className='artist-input' placeholder='Artist' name='artist' value={addSong.artist} onChange={handleChange}></input>
           <input className='album-input' placeholder='Album Title' name='album' value={addSong.album} onChange={handleChange}></input>
           <input className='genre-input' placeholder='Genre' name='genre' value={addSong.genre} onChange={handleChange}></input>
-          <input className='soundcloud-input' placeholder='SoundCloud URL' name='soundcloud' value={addSong.soundcloud} onChange={handleChange}></input>
           <input className='duration-input' placeholder='Duration in Seconds' name='duration' value={addSong.duration} onChange={handleChange}></input>
+          <small>Click the share button on your song in SoundCloud, go to embed, copy and paste the code below.</small>
+          <input className='soundcloud-input' placeholder='SoundCloud Embed URL' name='soundcloud' value={addSong.soundcloud} onChange={handleChange}></input>
           <select name='playlistSelect' onChange={handleChange}>
             {user ? user.playlists.map((item) => {
               return (
