@@ -1,20 +1,21 @@
 .playlist-page {
-    width: 100%;
+    width: 80%;
     padding: 5em;
 }
 
 .playlist-info {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    margin-bottom: 2em;
+}
+
+.add-song {
+    margin-left: auto;
 }
 
 .playlist-photo {
     border: 2px solid;
     width: 10vw;
     height: 10vw;
-}
-
-.button:hover {
-    cursor: pointer;
+    margin-right: 2em;
 }
