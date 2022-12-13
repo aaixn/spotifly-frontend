@@ -47,8 +47,11 @@ function App() {
         try {
           const response = await createUserWithEmailAndPassword(authentication, email, password)
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-          const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
-          setUser(userByEmail.data)
+          const newUser = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/users/', {
+            email: email,
+            playlists: []
+          })
+          setUser(newUser.data)
           setLoggingIn(false)
           navigate('/home')
         } catch (err) {

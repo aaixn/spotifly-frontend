@@ -27,10 +27,10 @@ export default function Nav({ user, setUser, setEmail }) {
 			name: `My Playlist #${user.playlists.length + 1}`,
 			songs: []
 		})
-		await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.username}/add`, {
+		await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}/add`, {
 			_id: newPlaylist.data._id
 		})
-		const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.username}`)
+		const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`)
 		setUser(updatedUser.data)
 		navigate(`/playlist/${newPlaylist.data._id}`)
 	}
