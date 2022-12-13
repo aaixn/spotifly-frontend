@@ -36,7 +36,7 @@ export default function Home({ user, setUser }) {
             return (
               <div className='playlist-grid-item' onClick={() => { navigate(`/playlist/${playlist._id}`) }}>
                 <div>{playlist.name}</div>
-                <img src={playlist.image} alt='playlist cover art' style={{ width: '200px' }} className='button' />
+                <img src={playlist.image} alt='playlist cover art' style={{ width: '200px', height: '200px', objectFit: 'cover' }} className='button' />
               </div>
             )
           })}
