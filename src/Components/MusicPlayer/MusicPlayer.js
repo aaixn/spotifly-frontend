@@ -3,7 +3,7 @@ import React from "react"
 const MusicPlayer = ({ playingNow }) => {
   return (
     <div className="music-player">
-      <iframe src={playingNow}></iframe>
+      <iframe className='music' src={playingNow}></iframe>
     </div>
   );
 }
