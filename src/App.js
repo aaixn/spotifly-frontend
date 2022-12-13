@@ -21,51 +21,65 @@ function App() {
   const navigate = useNavigate()
 
   const handleLogin = (action) => {
-    console.log('action: ', action)
     setLoggingIn(action)
   }
 
   useEffect(() => {
     const handleSetUser = async () => {
       const authentication = getAuth()
+      let response
       if (loggingIn === 'log in') {
         try {
-          const response = await signInWithEmailAndPassword(authentication, email, password)
-          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-          sessionStorage.setItem('ID Token', response._tokenResponse.idToken)
-          const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`, { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } })
-          setUser(userByEmail.data)
-          setLoggingIn(false)
-          navigate('/home')
+          response = await signInWithEmailAndPassword(authentication, email, password)
         } catch (err) {
-          if (err.code === 'auth/wrong-password') {
-            toast.error('Please check the Password');
+          switch (err.code) {
+            case 'auth/wrong-password': {
+              toast.error('Please check the Password')
+              break
+            }
+            case 'auth/user-not-found': {
+              toast.error('Please check the Email')
+              break
+            }
+            case 'auth/too-many-requests': toast.error('Whoa there, settle down with the login attempts! Try again in a minute')
           }
-          if (err.code === 'auth/user-not-found') {
-            toast.error('Please check the Email');
-          }
+          setLoggingIn(false)
+          return
         }
       }
       if (loggingIn === 'register') {
         try {
-          const response = await createUserWithEmailAndPassword(authentication, email, password)
-          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-          sessionStorage.setItem('ID Token', response._tokenResponse.idToken)
-          const newUser = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/users/', {
+          response = await createUserWithEmailAndPassword(authentication, email, password)
+        } catch (err) {
+          switch (err.code) {
+            case 'auth/invalid-email': {
+              toast.error('Enter a valid email address')
+              break
+            }
+            case 'auth/email-already-in-use': {
+              toast.error('Email Already in Use')
+              break
+            }
+            case 'auth/weak-password': toast.error('Password must be at least 6 characters long')
+          }
+          setLoggingIn(false)
+          return
+        }
+      }
+      if (response) {
+        sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+        sessionStorage.setItem('ID Token', response._tokenResponse.idToken)
+        const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
+        let userData
+        loggingIn === 'log in'
+          ? userData = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`, header)
+          : userData = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/users/', {
             email: email,
             playlists: []
-          }, { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } })
-          setUser(newUser.data)
-          setLoggingIn(false)
-          navigate('/home')
-        } catch (err) {
-          if (err.code === 'auth/email-already-in-use') {
-            toast.error('Email Already in Use');
-          }
-          if (err.code === 'auth/weak-password') {
-            toast.error('Password must be at least 6 characters long')
-          }
-        }
+          }, header)
+        setUser(userData.data)
+        setLoggingIn(false)
+        navigate('/home')
       }
     }
     handleSetUser()
