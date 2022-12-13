@@ -1,4 +1,15 @@
 .home {
     width: 85vw;
-    
+}
+
+.playlist-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.playlist-grid-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
