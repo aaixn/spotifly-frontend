@@ -8,29 +8,24 @@ import axios from 'axios'
 
 export default function Nav({ user, setUser, setEmail }) {
 	const navigate = useNavigate()
-	// useEffect(() => {
-	// 	const refreshUser = JSON.parse(sessionStorage.getItem('user'))
-	// 	refreshUser && setUser(refreshUser)
-	// }, [])
-
+	const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
 	const handleLogout = () => {
-		sessionStorage.removeItem('Auth Token');
-		navigate('/login')
+		sessionStorage.removeItem('Auth Token')
 		sessionStorage.removeItem('user')
+		sessionStorage.removeItem('ID Token')
 		setUser('')
-		console.log(user);
 		setEmail('')
+		navigate('/login')
 	}
-
 	const handleAddPlaylist = async () => {
 		const newPlaylist = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/playlists', {
 			name: `My Playlist #${user.playlists.length + 1}`,
 			songs: []
-		})
+		}, header)
 		await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}/add`, {
 			_id: newPlaylist.data._id
-		})
-		const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`)
+		}, header)
+		const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`, header)
 		setUser(updatedUser.data)
 		navigate(`/playlist/${newPlaylist.data._id}`)
 	}

@@ -30,7 +30,8 @@ function App() {
         try {
           const response = await signInWithEmailAndPassword(authentication, email, password)
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-          const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
+          sessionStorage.setItem('ID Token', response._tokenResponse.idToken)
+          const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`, { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } })
           setUser(userByEmail.data)
           setLoggingIn(false)
           navigate('/home')
@@ -47,10 +48,11 @@ function App() {
         try {
           const response = await createUserWithEmailAndPassword(authentication, email, password)
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+          sessionStorage.setItem('ID Token', response._tokenResponse.idToken)
           const newUser = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/users/', {
             email: email,
             playlists: []
-          })
+          }, { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } })
           setUser(newUser.data)
           setLoggingIn(false)
           navigate('/home')

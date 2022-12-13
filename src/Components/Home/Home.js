@@ -10,10 +10,6 @@ export default function Home({ setUser }) {
     if (authToken) {
       navigate('/home')
     }
-
-    // if (!authToken) {
-    //     navigate('/register')
-    // }
   }, [])
 
   return (
