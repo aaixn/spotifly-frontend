@@ -4,12 +4,13 @@ import Nav from './Components/Nav/Nav';
 import Home from './Components/Home/Home';
 import { useEffect, useState } from 'react'
 import Playlist from './Components/Playlist/Playlist';
-import Form from './Components/Form/Form';
+import Login from './Components/Login/Login';
 import { app } from './firebase-config'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { DialogTitle } from '@mui/material';
 
 function App() {
   const [user, setUser] = useState('')
@@ -19,7 +20,8 @@ function App() {
   const [loggingIn, setLoggingIn] = useState('')
   const navigate = useNavigate()
 
-  const handleAction = async (action) => {
+  const handleLogin = (action) => {
+    console.log('action: ', action)
     setLoggingIn(action)
   }
 
@@ -83,8 +85,7 @@ function App() {
       {user && <Nav user={user} setUser={setUser} setEmail={setEmail} />}
       <ToastContainer />
       <Routes>
-        <Route path='/login' element={<Form title='Log In' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('log in')} />} />
-        <Route path='/register' element={<Form title='Register' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('register')} />} />
+        <Route path='/login' element={<Login title='Log In' setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin} />} />
         <Route path='/home' element={<Home setUser={setUser} />} />
         <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} />} />
       </Routes>
