@@ -6,21 +6,31 @@ import '../Nav/Nav.css'
 import PlaylistList from '../PlaylistList/PlaylistList'
 import axios from 'axios'
 
-export default function Nav({ user, setUser }) {
+export default function Nav({ user, setUser, setEmail }) {
 	const navigate = useNavigate()
-	useEffect(() => {
-		const refreshUser = JSON.parse(window.localStorage.getItem('user'))
-		refreshUser && setUser(refreshUser)
-	}, [])
+	// useEffect(() => {
+	// 	const refreshUser = JSON.parse(sessionStorage.getItem('user'))
+	// 	refreshUser && setUser(refreshUser)
+	// }, [])
+
+	const handleLogout = () => {
+		sessionStorage.removeItem('Auth Token');
+		navigate('/login')
+		sessionStorage.removeItem('user')
+		setUser('')
+		console.log(user);
+		setEmail('')
+	}
+
 	const handleAddPlaylist = async () => {
 		const newPlaylist = await axios.post('https://spotifly-backend-ga.herokuapp.com/api/playlists', {
 			name: `My Playlist #${user.playlists.length + 1}`,
 			songs: []
 		})
-		await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.username}/add`, {
+		await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}/add`, {
 			_id: newPlaylist.data._id
 		})
-		const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.username}`)
+		const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`)
 		setUser(updatedUser.data)
 		navigate(`/playlist/${newPlaylist.data._id}`)
 	}
@@ -35,6 +45,7 @@ export default function Nav({ user, setUser }) {
 				<IoIosAddCircle className='add-playlist-button' style={{ fontSize: '1.3em' }} onClick={handleAddPlaylist} />
 			</div>
 			<PlaylistList user={user} />
+			<button className='logout-button' onClick={handleLogout}>Log Out</button>
 		</div>
 	)
 }
