@@ -101,7 +101,7 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path='/login' element={<Login title='Log In' setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin} />} />
-        <Route path='/home' element={<Home setUser={setUser} />} />
+        <Route path='/home' element={<Home user={user} setUser={setUser} />} />
         <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} />} />
       </Routes>
     </div>
