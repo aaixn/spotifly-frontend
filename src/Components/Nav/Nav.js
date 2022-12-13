@@ -8,10 +8,10 @@ import axios from 'axios'
 
 export default function Nav({ user, setUser, setEmail }) {
 	const navigate = useNavigate()
-	useEffect(() => {
-		const refreshUser = JSON.parse(sessionStorage.getItem('user'))
-		refreshUser && setUser(refreshUser)
-	}, [])
+	// useEffect(() => {
+	// 	const refreshUser = JSON.parse(sessionStorage.getItem('user'))
+	// 	refreshUser && setUser(refreshUser)
+	// }, [])
 
 	const handleLogout = () => {
 		sessionStorage.removeItem('Auth Token');
