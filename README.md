@@ -61,7 +61,7 @@ Create an account with your email and password to start streaming your favorite 
 | Add Song Form         | H        | 2 hours        | 2 hours       | 2 hours     |
 | Delete songs          | H | 2 hours | 2 hours | 2 hours |
 | Create Playlists | H | 1 hour | 1 hour | 1 hour |
-| User Authentication | M | 2 hours | 7 hours | 7 hours |
+| User Authentication | M | 2 hours | 5 hours | 5 hours |
 
 ### Additional Libraries
 
@@ -73,10 +73,12 @@ Create an account with your email and password to start streaming your favorite 
 
 - Error: CORS preventing audio from SoundCloud link from playing
     -  Resolution: You can retrieve the link by searching the song you want on SoundClound, select share, and then embed. Take the src link to be able to play the song.
+
 - Error: Cannot retrieve user data
-    - Resolution: Used the spread operator to 
+    - Resolution: Used the spread operator
+
 - Error: Authentication state persistance - when logout button is clicked, there is still a call to the backend to get user data
-- Resolution:
+    - Resolution: added a loggingIn state which changes from 'log in' or 'register' to false based on clicking the login/register button
 
 ### Future Plans:
 - Include a recently played section on the homepage
