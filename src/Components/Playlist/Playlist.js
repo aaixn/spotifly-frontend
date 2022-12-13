@@ -8,7 +8,7 @@ import MusicPlayer from '../MusicPlayer/MusicPlayer'
 import '../Playlist/Playlist.css'
 import SongList from '../SongList/SongList'
 
-export default function Playlist({ playlist, setPlaylist, user, setUser }) {
+export default function Playlist({ playlist, setPlaylist, user, setUser, header }) {
   const [editing, setEditing] = useState(false)
   const [newName, setNewName] = useState('')
   const [playingNow, setPlayingNow] = useState('')
@@ -25,15 +25,15 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   }, [id])
 
   const getPlaylist = async () => {
-    const playlistInfo = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`)
+    const playlistInfo = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, header)
     setPlaylist(playlistInfo.data)
   }
 
   const deletePlaylist = async () => {
     await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}/remove`, {
       _id: id
-    })
-    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`)
+    }, header)
+    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`, header)
     setUser(updatedUser.data)
     navigate(-1)
   }
@@ -41,8 +41,8 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   const submitNewName = async () => {
     await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, {
       name: newName
-    })
-    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`)
+    }, header)
+    const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`, header)
     setUser(updatedUser.data)
     setEditing(false)
     getPlaylist()
