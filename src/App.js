@@ -16,59 +16,53 @@ function App() {
   const [playlist, setPlaylist] = useState({})
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggingIn, setLoggingIn] = useState('')
   const navigate = useNavigate()
 
-
   const handleAction = async (action) => {
-    const authentication = getAuth()
-    if (action === 'log in') {
-      try {
-        const response = await signInWithEmailAndPassword(authentication, email, password)
-        sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-        // const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
-        // setUser(userByEmail)
-        // console.log('hi');
-        setLoggedIn(true)
-        navigate('/home')
-      } catch (err) {
-        if (err.code === 'auth/wrong-password') {
-          toast.error('Please check the Password');
-        }
-        if (err.code === 'auth/user-not-found') {
-          toast.error('Please check the Email');
-        }
-      }
-    }
-    if (action === 'register') {
-      try {
-        const response = await createUserWithEmailAndPassword(authentication, email, password)
-        sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-        // const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
-        // setUser(userByEmail)
-        setLoggedIn(true)
-        navigate('/home')
-      } catch (err) {
-        if (err.code === 'auth/email-already-in-use') {
-          toast.error('Email Already in Use');
-        }
-        if (err.code === 'auth/weak-password') {
-          toast.error('Password must be at least 6 characters long')
-        }
-      }
-    }
+    setLoggingIn(action)
   }
 
   useEffect(() => {
-    const getUser = async () => {
-      const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
-      setUser({ ...userByEmail.data })
-      console.log('comp did mt');
-      console.log('email:', email, 'user:', user, 'user by email:', userByEmail.data)
+    const handleSetUser = async () => {
+      const authentication = getAuth()
+      if (loggingIn === 'log in') {
+        try {
+          const response = await signInWithEmailAndPassword(authentication, email, password)
+          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+          const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
+          setUser(userByEmail.data)
+          setLoggingIn(false)
+          navigate('/home')
+        } catch (err) {
+          if (err.code === 'auth/wrong-password') {
+            toast.error('Please check the Password');
+          }
+          if (err.code === 'auth/user-not-found') {
+            toast.error('Please check the Email');
+          }
+        }
+      }
+      if (loggingIn === 'register') {
+        try {
+          const response = await createUserWithEmailAndPassword(authentication, email, password)
+          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+          const userByEmail = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`)
+          setUser(userByEmail.data)
+          setLoggingIn(false)
+          navigate('/home')
+        } catch (err) {
+          if (err.code === 'auth/email-already-in-use') {
+            toast.error('Email Already in Use');
+          }
+          if (err.code === 'auth/weak-password') {
+            toast.error('Password must be at least 6 characters long')
+          }
+        }
+      }
     }
-    if (loggedIn) return
-    else getUser()
-  }, [loggedIn])
+    handleSetUser()
+  }, [loggingIn])
 
   useEffect(() => {
     let authToken = sessionStorage.getItem('Auth Token')
@@ -84,7 +78,7 @@ function App() {
   console.log('app:', user)
   return (
     <div className='login'>
-      {loggedIn && <Nav user={user} setUser={setUser} setEmail={setEmail} />}
+      {user && <Nav user={user} setUser={setUser} setEmail={setEmail} />}
       <ToastContainer />
       <Routes>
         <Route path='/login' element={<Form title='Log In' setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction('log in')} />} />
