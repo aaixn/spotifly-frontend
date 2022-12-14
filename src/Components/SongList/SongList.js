@@ -51,16 +51,16 @@ export default function SongList({ playlist, playingNow, setPlayingNow, user, se
                 </tbody>
                 {playlist.songs && playlist.songs.map((song, index) => {
                     return (
-                        <tbody>
+                        <tbody className='songs'>
                             <tr>
                                 <td><TbPlayerPlay className='play button' onClick={() => {
                                     getTrackId(song.soundcloud)
                                 }} /></td>
-                                <td><span style={{ fontWeight: 'bold' }}>{song.name}</span><br />{song.artist.map((artist, index) => { return index !== song.artist.length - 1 ? (`${artist}, `) : artist })}</td>
+                                <td><span>{song.name}</span><br /><span><small>{song.artist.map((artist, index) => { return index !== song.artist.length - 1 ? (`${artist}, `) : artist })}</small></span></td>
                                 <td>{song.album.map((album, index) => { return index !== song.album.length - 1 ? (`${album}, `) : album })}</td>
                                 <td>{dateConvert(song.createdAt)}</td>
                                 <td>{durationConvert(song.duration)}</td>
-                                <td><TbTrash style={{ color: 'white' }} onClick={() => deleteSong(song)} className='trash button' /></td>
+                                <td><TbTrash onClick={() => deleteSong(song)} className='trash' /></td>
                             </tr>
                         </tbody>
                     )
