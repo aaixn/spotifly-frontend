@@ -62,7 +62,8 @@ Create an account with your email and password to start streaming your favorite 
 | User Authentication | M | 2 hours | 7 hours | 7 hours |
 
 ### Additional Libraries
-
+- Firebase User Authentication
+- React-Toastify
 
 ### Code Snippet:
 
