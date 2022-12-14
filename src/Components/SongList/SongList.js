@@ -60,7 +60,7 @@ export default function SongList({ playlist, playingNow, setPlayingNow, user, se
                                 <td>{song.album.map((album, index) => { return index !== song.album.length - 1 ? (`${album}, `) : album })}</td>
                                 <td>{dateConvert(song.createdAt)}</td>
                                 <td>{durationConvert(song.duration)}</td>
-                                <td><TbTrash onClick={() => deleteSong(song)} className='trash' /></td>
+                                <td><TbTrash onClick={() => deleteSong(song)} className='trash' style={{cursor: 'pointer'}}/></td>
                             </tr>
                         </tbody>
                     )

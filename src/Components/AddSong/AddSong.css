@@ -1,24 +1,39 @@
-.add {
-    color: #1BD760
-}
-
 .add-song {
-    width: 70%
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .add-song-form {
+    margin: auto;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 60%;
+    padding: 2em 7em;
     gap: 0.5em;
     align-content: center;
     text-align: center;
+    background-color: #2B3035;
+    border-radius: 10px;
 }
 
 .add-song-form > input, select {
     height: 2em;
     border-radius: 5px;
     padding: 5px;
+    border: none;
+    margin: none;
+}
+
+.add-song-form > p, small {
+    margin: 0;
+    text-align: left;
 }
 
 select {
@@ -26,11 +41,13 @@ select {
 }
 
 .add-to-playlist-button {
-    width: 50%;
+    width: 30%;
     font-family: spotify, sans-serif;
     align-self: center;
     background-color: #1bd760;
     border-radius: 20px;
     border: none;
     padding: 1em;
+    margin-top: 1em;
+    cursor: pointer;
 }
