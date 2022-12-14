@@ -1,18 +1,26 @@
 .nav {
     display: flex;
     flex-direction: column;
-    border: 2px solid;
-    width: 15vw;
-    height: 90vh;
+    width: 13vw;
+    height: 100%;
+    box-sizing: border-box;
     text-align: left;
+    background-color: black;
+    padding: 1.2em 1vw;
 }
 
 .nav-home,
 .nav-playlists {
     display: flex;
     align-items: center;
-    padding: 0 10px 0 10px;
-    border-bottom: 2px solid;
+}
+
+.nav-home {
+    font-size: 1.3em;
+}
+
+.nav-playlists {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .nav-home {
@@ -30,4 +38,19 @@ a {
 
 .playlist-list {
     list-style: none;
+    padding-top: 2em;
+}
+
+.logout-button {
+    width: 10vw;
+    font-family: spotify, sans-serif;
+    align-self: center;
+    background-color: #1bd760;
+    border-radius: 20px;
+    border: none;
+    padding: 1em;
+    margin-top: 1em;
+    cursor: pointer;
+    position: absolute;
+    bottom: 2em;
 }

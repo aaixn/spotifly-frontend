@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { IoIosAddCircle } from 'react-icons/io'
+import { IoIosAddCircle, IoIosHome } from 'react-icons/io'
 import { GrHomeRounded } from 'react-icons/gr'
 import '../Nav/Nav.css'
 import PlaylistList from '../PlaylistList/PlaylistList'
@@ -32,12 +32,12 @@ export default function Nav({ user, setUser, setEmail }) {
 	return (
 		<div className='nav'>
 			<Link to='/home'><div className='nav-home'>
-				<GrHomeRounded />
+				<IoIosHome style={{color: 'white', fontSize: '1.3em'}}/>
 				<p>Home</p>
 			</div></Link>
 			<div className='nav-playlists'>
 				<p>Playlists</p>
-				<IoIosAddCircle className='add-playlist-button' style={{ fontSize: '1.3em' }} onClick={handleAddPlaylist} />
+				<IoIosAddCircle className='add-playlist-button' style={{ fontSize: '1.3em', cursor: 'pointer', color: '#1BD760' }} onClick={handleAddPlaylist} />
 			</div>
 			<PlaylistList user={user} />
 			<button className='logout-button' onClick={handleLogout}>Log Out</button>

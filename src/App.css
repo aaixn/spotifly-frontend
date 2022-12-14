@@ -6,6 +6,8 @@
 .app {
   font-family: spotify, sans-serif;
   color: white;
+  width: 100vw;
+  height: 100vh;
 }
 
 .button {
