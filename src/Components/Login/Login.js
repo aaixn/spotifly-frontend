@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '../Button/Button';
+import React, { useEffect } from 'react'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
+import Button from '../Button/Button'
 import './Login.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 export default function Login({ setUser, setEmail, setPassword, handleLogin }) {
     const navigate = useNavigate()

@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IoIosAddCircle, IoIosHome } from 'react-icons/io'
-import { GrHomeRounded } from 'react-icons/gr'
 import '../Nav/Nav.css'
 import PlaylistList from '../PlaylistList/PlaylistList'
 import axios from 'axios'
@@ -32,7 +31,7 @@ export default function Nav({ user, setUser, setEmail }) {
 	return (
 		<div className='nav'>
 			<Link to='/home'><div className='nav-home'>
-				<IoIosHome style={{color: 'white', fontSize: '1.3em'}}/>
+				<IoIosHome style={{ color: 'white', fontSize: '1.3em' }} />
 				<p>Home</p>
 			</div></Link>
 			<div className='nav-playlists'>
