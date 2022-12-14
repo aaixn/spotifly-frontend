@@ -61,9 +61,6 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
     getPlaylist()
   }
 
-  useEffect(() => {
-    console.log('editing status: ', editingImage)
-  }, [editingImage])
 
   return (
     <div className='playlist-page'>

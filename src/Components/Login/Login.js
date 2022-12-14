@@ -12,7 +12,6 @@ export default function Login({ setUser, setEmail, setPassword, handleLogin }) {
         if (sessionStorage.getItem('user') !== 'undefined' || undefined) {
             refreshUser = JSON.parse(sessionStorage.getItem('user'))
         }
-        console.log(refreshUser)
         refreshUser && setUser(refreshUser)
         if (refreshUser) navigate('/home')
     }, [])

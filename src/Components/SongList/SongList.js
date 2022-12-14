@@ -21,15 +21,11 @@ export default function SongList({ playlist, playingNow, setPlayingNow, user, se
     }
 
     const deleteSong = async (song) => {
-        try {
-            const id = await playlist._id
-            const updatedSongs = await playlist.songs.filter(item => item._id !== song._id)
-            await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, { songs: updatedSongs }, header)
-            const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`, header)
-            setUser(updatedUser.data)
-        } catch (err) {
-            console.log(err);
-        }
+        const id = await playlist._id
+        const updatedSongs = await playlist.songs.filter(item => item._id !== song._id)
+        await axios.put(`https://spotifly-backend-ga.herokuapp.com/api/playlists/${id}`, { songs: updatedSongs }, header)
+        const updatedUser = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${user.email}`, header)
+        setUser(updatedUser.data)
     }
 
     const getTrackId = (song) => {

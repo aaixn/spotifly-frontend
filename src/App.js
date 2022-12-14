@@ -102,7 +102,6 @@ function App() {
       if (sessionStorage.getItem('user') !== 'undefined' || undefined) {
         refreshUser = JSON.parse(sessionStorage.getItem('user'))
       }
-      console.log(refreshUser)
       refreshUser && setUser(refreshUser)
       refreshUser ? navigate('/home') : navigate('/login')
     }, [])
