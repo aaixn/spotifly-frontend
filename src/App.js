@@ -41,7 +41,6 @@ function App() {
 							break
 						}
 						case 'auth/too-many-requests': toast.error('Whoa there, settle down with the login attempts! Try again in a minute')
-						default: toast.error(err.code)
 					}
 					setLoggingIn(false)
 					return
@@ -61,7 +60,6 @@ function App() {
 							break
 						}
 						case 'auth/weak-password': toast.error('Password must be at least 6 characters long')
-						default: toast.error(err.code)
 					}
 					setLoggingIn(false)
 					return
