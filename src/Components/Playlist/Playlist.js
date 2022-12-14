@@ -14,6 +14,7 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
   const [newImage, setNewImage] = useState('')
   const [newName, setNewName] = useState('')
   const [playingNow, setPlayingNow] = useState('')
+  const [addSongModal, setAddSongModal] = useState(false)
   const { id } = useParams()
   const navigate = useNavigate()
   const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
@@ -86,10 +87,10 @@ export default function Playlist({ playlist, setPlaylist, user, setUser }) {
             <TbPencil style={{ fontSize: '1em', color: '#1BD760' }} onClick={() => { setEditing(true) }} className='pencil button' />
             <TbTrash className='delete button' style={{ fontSize: '1em', color: 'white' }} onClick={deletePlaylist} />
           </h1>}
-        <IoIosAddCircle className='addsong button' style={{ fontSize: '2em', color: '#1bd760' }} />
+        <IoIosAddCircle className='addsong button' style={{ fontSize: '2em', color: '#1bd760' }} onClick={() => setAddSongModal(true)}/>
       </div>
       <SongList user={user} setUser={setUser} playlist={playlist} playingNow={playingNow} setPlayingNow={setPlayingNow} />
-      <AddSong playlist={playlist} user={user} setUser={setUser} />
+      <AddSong playlist={playlist} user={user} setUser={setUser} addSongModal={addSongModal} setAddSongModal={setAddSongModal} />
       <MusicPlayer playingNow={playingNow} setPlayingNow={setPlayingNow} />
     </div>
   )

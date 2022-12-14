@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './AddSong.css'
 import axios from 'axios'
-import { IoIosAddCircle } from 'react-icons/io'
-import TextField from '@mui/material'
+import { IoIosAddCircle, IoIosCloseCircle } from 'react-icons/io'
 
-export default function AddSong({ playlist, user, setUser }) {
+export default function AddSong({ playlist, user, setUser, addSongModal, setAddSongModal }) {
   const [addSong, setAddSong] = useState(
     {
       name: '',
@@ -72,6 +71,7 @@ export default function AddSong({ playlist, user, setUser }) {
       soundcloud: '',
       playlistSelect: ''
     })
+    setAddSongModal(false)
   }
 
   const addExistingSong = async (song) => {
@@ -94,17 +94,25 @@ export default function AddSong({ playlist, user, setUser }) {
   }
 
   return (
-    <div className='add-song'>
+    <div className='add-song' style={{display: addSongModal ? 'flex' : 'none'}} >
       <div>
-        <form className='add-song-form'>
+        <form className='add-song-form' style={{position: 'relative'}} >
+          <IoIosCloseCircle style={{color: '#1BD760', fontSize: '2em', position:'absolute', right: '1em', cursor: 'pointer'}} onClick={() => setAddSongModal(false)} />
           <h1>Add a Song to a Playlist</h1>
+          <p>Song Title</p>
           <input className='name-input' placeholder='Song Title' name='name' value={addSong.name} onChange={handleChange}></input>
+          <p>Artist</p>
           <input className='artist-input' placeholder='Artist' name='artist' value={addSong.artist} onChange={handleChange}></input>
+          <p>Album Name</p>
           <input className='album-input' placeholder='Album Title' name='album' value={addSong.album} onChange={handleChange}></input>
+          <p>Genre</p>
           <input className='genre-input' placeholder='Genre' name='genre' value={addSong.genre} onChange={handleChange}></input>
+          <p>Song Duration</p>
           <input className='duration-input' placeholder='Duration in Seconds' name='duration' value={addSong.duration} onChange={handleChange}></input>
+          <p>SoundCloud Input</p>
           <small>Click the share button on your song in SoundCloud, go to embed, copy and paste the code below.</small>
           <input className='soundcloud-input' placeholder='SoundCloud Embed URL' name='soundcloud' value={addSong.soundcloud} onChange={handleChange}></input>
+          <p>Playlist to Add to</p>
           <select name='playlistSelect' onChange={handleChange}>
             {user ? user.playlists.map((item) => {
               return (
@@ -112,7 +120,7 @@ export default function AddSong({ playlist, user, setUser }) {
               )
             }) : null}
           </select>
-          <button className='add-to-playlist-button' onClick={addSongToPlaylist}>Add to Playlist</button>
+          <button className='add-to-playlist-button' onClick={addSongToPlaylist} >Add to Playlist</button>
         </form>
       </div>
       <ul className='search-results'>
