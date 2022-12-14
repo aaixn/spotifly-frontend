@@ -11,8 +11,8 @@ export default function Nav({ user, setUser, setEmail }) {
 	const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
 	const handleLogout = () => {
 		sessionStorage.removeItem('Auth Token')
-		sessionStorage.removeItem('user')
 		sessionStorage.removeItem('ID Token')
+		sessionStorage.removeItem('user')
 		setUser('')
 		setEmail('')
 		navigate('/login')

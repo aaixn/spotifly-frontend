@@ -1,10 +1,21 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '../Button/Button';
 import './Login.css'
+import { useNavigate } from 'react-router-dom';
 
-export default function Login({ setEmail, setPassword, handleLogin }) {
+export default function Login({ setUser, setEmail, setPassword, handleLogin }) {
+    const navigate = useNavigate()
+    useEffect(() => {
+        let refreshUser
+        if (sessionStorage.getItem('user') !== 'undefined' || undefined) {
+            refreshUser = JSON.parse(sessionStorage.getItem('user'))
+        }
+        console.log(refreshUser)
+        refreshUser && setUser(refreshUser)
+        if (refreshUser) navigate('/home')
+    }, [])
     return (
         <div className='sign-page'>
             <div className="heading-container">
@@ -29,5 +40,5 @@ export default function Login({ setEmail, setPassword, handleLogin }) {
                 </div>
             </Box>
         </div>
-    );
+    )
 }

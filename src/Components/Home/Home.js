@@ -9,7 +9,7 @@ export default function Home({ user, setUser }) {
   const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
   useEffect(() => {
     let refreshUser
-    if (localStorage.getItem('user') !== 'undefined' || undefined) refreshUser = JSON.parse(localStorage.getItem('user'))
+    if (sessionStorage.getItem('user') !== 'undefined' || undefined) refreshUser = JSON.parse(sessionStorage.getItem('user'))
     refreshUser && setUser(refreshUser)
   }, [])
 

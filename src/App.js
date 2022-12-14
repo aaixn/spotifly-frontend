@@ -87,20 +87,20 @@ function App() {
 
   useEffect(() => {
     let refreshUser
-    if (localStorage.getItem('user') !== 'undefined' || undefined) refreshUser = JSON.parse(localStorage.getItem('user'))
+    if (sessionStorage.getItem('user') !== 'undefined' || undefined) refreshUser = JSON.parse(sessionStorage.getItem('user'))
     refreshUser && setUser(refreshUser)
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user))
+    sessionStorage.setItem('user', JSON.stringify(user))
   }, [user])
 
   const Blank = ({ setUser }) => {
     const navigate = useNavigate()
     useEffect(() => {
       let refreshUser
-      if (localStorage.getItem('user') !== 'undefined' || undefined) {
-        refreshUser = JSON.parse(localStorage.getItem('user'))
+      if (sessionStorage.getItem('user') !== 'undefined' || undefined) {
+        refreshUser = JSON.parse(sessionStorage.getItem('user'))
       }
       console.log(refreshUser)
       refreshUser && setUser(refreshUser)
@@ -117,7 +117,7 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path='/' element={<Blank user={user} setUser={setUser} />} />
-        <Route path='/login' element={<Login title='Log In' setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin} />} />
+        <Route path='/login' element={<Login title='Log In' setUser={setUser} setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin} />} />
         <Route path='/home' element={<Home user={user} setUser={setUser} />} />
         <Route path='/playlist/:id' element={<Playlist user={user} setUser={setUser} playlist={playlist} setPlaylist={setPlaylist} />} />
       </Routes>
