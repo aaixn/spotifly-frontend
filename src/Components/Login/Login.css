@@ -18,19 +18,21 @@
 #email {
     color: white;
     border: 1px solid white;
-    
 }
-
+.email-input:hover {
+    border: 1px solid white;
+}
 #password {
     color: white;
     border: 1px solid white;
 }
-
+.password-input:hover {
+    border: 1px solid white;
+}
 .sign-buttons {
     display: flex;
     justify-content: space-between;
 }
-
 .sign-buttons>button {
     background-color: #1bd760;
     color: black;
