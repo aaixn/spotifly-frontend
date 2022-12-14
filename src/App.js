@@ -95,7 +95,7 @@ function App() {
     localStorage.setItem('user', JSON.stringify(user))
   }, [user])
 
-  const Blank = ({ user, setUser }) => {
+  const Blank = ({ setUser }) => {
     const navigate = useNavigate()
     useEffect(() => {
       let refreshUser
