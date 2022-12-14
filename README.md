@@ -47,6 +47,8 @@ Create an account with your email and password to start streaming your favorite 
 | Playlist | Allows users to view all playlists                                      |
 | PlaylistList  | Users can view playlists                                |
 | SongList | View songs in a selected playlist |
+| Button | Button to select either log in or register depending on if the user has an email account |
+| Form | Log in or register form depending on if the user has an email account |
 
 ### Time Frames:
 
