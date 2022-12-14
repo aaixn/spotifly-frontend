@@ -9,18 +9,21 @@
 .heading-container {
     font-size: 4em;
 }
+
 #email {
     color: white;
 }
+
 #password {
     color: white
 }
+
 .sign-buttons {
     display: flex;
     justify-content: space-between;
 }
 
-.sign-buttons > button {
+.sign-buttons>button {
     background-color: #1bd760;
     color: black;
     border-radius: 20px;
@@ -28,7 +31,11 @@
     font-family: spotify, sans-serif;
 }
 
-.sign-buttons > button:hover {
+.sign-buttons>button:hover {
     background-color: black;
     color: #1bd760;
+}
+
+.input {
+    border: solid white 1px;
 }
