@@ -3,7 +3,7 @@ import '../SongList/SongList.css'
 import { TbTrash, TbPlayerPlay } from 'react-icons/tb'
 import axios from 'axios'
 
-export default function SongList({ playlist, setPlayingNow, user, setUser }) {
+export default function SongList({ playlist, playingNow, setPlayingNow, user, setUser }) {
     const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
 
     const durationConvert = (duration) => {
@@ -31,6 +31,12 @@ export default function SongList({ playlist, setPlayingNow, user, setUser }) {
             console.log(err);
         }
     }
+
+    const getTrackId = (song) => {
+        let trackId = song && song.substring((song.indexOf('tracks/')+7), song.indexOf('&color'))
+        setPlayingNow(trackId);
+    }
+
     return (
         <div>
             <table>
@@ -48,7 +54,7 @@ export default function SongList({ playlist, setPlayingNow, user, setUser }) {
                         <tbody>
                             <tr>
                                 <td><TbPlayerPlay className='play button' onClick={() => {
-                                    setPlayingNow(song.soundcloud)
+                                    getTrackId(song.soundcloud)
                                 }} /></td>
                                 <td><span style={{ fontWeight: 'bold' }}>{song.name}</span><br />{song.artist.map((artist, index) => { return index !== song.artist.length - 1 ? (`${artist}, `) : artist })}</td>
                                 <td>{song.album.map((album, index) => { return index !== song.album.length - 1 ? (`${album}, `) : album })}</td>
