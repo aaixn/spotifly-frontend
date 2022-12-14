@@ -5,8 +5,9 @@
     height: 100%;
     box-sizing: border-box;
     text-align: left;
-    background-color: black;
+    background-color: #000000;
     padding: 1.2em 1vw;
+    z-index: 2
 }
 
 .nav-home,
@@ -53,4 +54,5 @@ a {
     cursor: pointer;
     position: absolute;
     bottom: 2em;
+    z-index: 100;
 }
