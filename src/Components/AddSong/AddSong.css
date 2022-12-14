@@ -23,7 +23,8 @@
     border-radius: 10px;
 }
 
-.add-song-form > input, select {
+.add-song-form>input,
+select {
     height: 2em;
     border-radius: 5px;
     padding: 5px;
@@ -31,7 +32,8 @@
     margin: none;
 }
 
-.add-song-form > p, small {
+.add-song-form>p,
+small {
     margin: 0;
     text-align: left;
 }
@@ -50,4 +52,9 @@ select {
     padding: 1em;
     margin-top: 1em;
     cursor: pointer;
+}
+
+.add {
+    color: #1bd760;
+    font-size: 20px;
 }

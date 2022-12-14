@@ -94,10 +94,10 @@ export default function AddSong({ playlist, user, setUser, addSongModal, setAddS
   }
 
   return (
-    <div className='add-song' style={{display: addSongModal ? 'flex' : 'none'}} >
+    <div className='add-song' style={{ display: addSongModal ? 'flex' : 'none' }} >
       <div>
-        <form className='add-song-form' style={{position: 'relative'}} >
-          <IoIosCloseCircle style={{color: '#1BD760', fontSize: '2em', position:'absolute', right: '1em', cursor: 'pointer'}} onClick={() => setAddSongModal(false)} />
+        <form className='add-song-form' style={{ position: 'relative' }} >
+          <IoIosCloseCircle style={{ color: '#1BD760', fontSize: '2em', position: 'absolute', right: '1em', cursor: 'pointer' }} onClick={() => setAddSongModal(false)} />
           <h1>Add a Song to a Playlist</h1>
           <p>Song Title</p>
           <input className='name-input' placeholder='Song Title' name='name' value={addSong.name} onChange={handleChange}></input>
@@ -121,11 +121,11 @@ export default function AddSong({ playlist, user, setUser, addSongModal, setAddS
             }) : null}
           </select>
           <button className='add-to-playlist-button' onClick={addSongToPlaylist} >Add to Playlist</button>
+          <ul className='search-results'>
+            {matchingSongs.map(song => <li style={{ listStyle: 'none' }}>{`${song.name} - ${song.artist} - ${song.album}  `}<IoIosAddCircle className='add button' onClick={() => { addExistingSong(song) }} /></li>)}
+          </ul>
         </form>
       </div>
-      <ul className='search-results'>
-        {matchingSongs.map(song => <li style={{ listStyle: 'none' }}>{`${song.name} - ${song.artist} - ${song.album}`}<IoIosAddCircle onClick={() => { addExistingSong(song) }} /></li>)}
-      </ul>
     </div>
   )
 }
