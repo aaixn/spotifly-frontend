@@ -31,9 +31,9 @@ export default function Login({ setUser, setEmail, setPassword, handleLogin }) {
                 autoComplete="off"
             >
                 <h4>Email Address</h4>
-                <TextField className='email input' id="email" label="Enter Your Email" variant="outlined" onChange={(e) => setEmail(e.target.value)} />
+                <TextField className='email-input' id="email" label="Enter Your Email" variant="outlined" onChange={(e) => setEmail(e.target.value)} />
                 <h4>Password</h4>
-                <TextField className='password input' type="password" id="password" label="Enter Your Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
+                <TextField className='password-input' type="password" id="password" label="Enter Your Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
                 <div className='sign-buttons'>
                     <Button title='Log In' handleAction={() => { handleLogin('log in') }} />
                     <Button title='Sign Up' handleAction={() => { handleLogin('register') }} />
