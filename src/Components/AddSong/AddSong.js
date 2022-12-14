@@ -63,6 +63,15 @@ export default function AddSong({ playlist, user, setUser }) {
     } catch (err) {
       console.log(err);
     }
+    setAddSong({
+      name: '',
+      artist: '',
+      album: '',
+      duration: '',
+      genre: '',
+      soundcloud: '',
+      playlistSelect: ''
+    })
   }
 
   const addExistingSong = async (song) => {
@@ -103,7 +112,7 @@ export default function AddSong({ playlist, user, setUser }) {
               )
             }) : null}
           </select>
-          <button className='add-to-playlist-button'>Add to Playlist</button>
+          <button className='add-to-playlist-button' onClick={addSongToPlaylist}>Add to Playlist</button>
         </form>
       </div>
       <ul className='search-results'>
