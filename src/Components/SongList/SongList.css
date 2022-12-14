@@ -6,6 +6,19 @@
 
 table {
     width: 100%;
+    border-collapse: collapse;
+}
+
+.songlist-header {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+th {
+    padding-bottom: 0.5em;
+}
+
+td {
+    padding: 0.5em 0;
 }
 
 .play {
