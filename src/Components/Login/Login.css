@@ -10,6 +10,11 @@
     font-size: 4em;
 }
 
+.heading-container > h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
 #email {
     color: white;
     border: 1px solid white;
@@ -41,6 +46,6 @@
     color: #1bd760;
 }
 
-.input {
-    border: solid white 1px;
+.input::placeholder {
+    color: wheat;
 }
