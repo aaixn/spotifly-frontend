@@ -1,8 +1,9 @@
 .playlist-page {
-    width: 70%;
+    width: 85vw;
     padding: 5em;
     margin-top: -50px;
     margin-left: -50px;
+    overflow-x: hidden;
 }
 
 .playlist-info {
