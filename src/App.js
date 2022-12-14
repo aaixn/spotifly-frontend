@@ -69,6 +69,7 @@ function App() {
 				sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
 				sessionStorage.setItem('ID Token', response._tokenResponse.idToken)
 				const header = { headers: { authorization: `bearer ${sessionStorage.getItem('ID Token')}` } }
+				console.log(header)
 				let userData
 				loggingIn === 'log in'
 					? userData = await axios.get(`https://spotifly-backend-ga.herokuapp.com/api/users/${email}`, header)
