@@ -34,35 +34,6 @@ Create an account with your email and password to start streaming your favorite 
 - Discover songs based on genre 
 
 
-### Components:
-
-| Component    | Description                                                              |
-| ------------ | ------------------------------------------------------------------------ |
-| App          | Contains the Login page including the Home page, Playlist, and Nav component if there is a user |
-| Home       | Provides the home page information                           |
-| AddSong    | Form allowing users to add songs to playlists           |
-| Login      | Contains user logins with links to their user data                            |
-| MusicPlayer     | Plays music when a song is selected                      |
-| Nav        | Displays nav bar options                                                |
-| Playlist | Allows users to view all playlists                                      |
-| PlaylistList  | Users can view playlists                                |
-| SongList | View songs in a selected playlist |
-| Button | Button to select either log in or register depending on if the user has an email account |
-| Form | Log in or register form depending on if the user has an email account |
-
-### Time Frames:
-
-| Component        | Priority | Estimated Time | Time Invested | Actual Time |
-| ---------------- | -------- | -------------- | ------------- | ----------- |
-| Login page with Morgan, Eli, and Ana as users | H        | 1 hour        | 1 hour       | 1 hour     |
-| Nav       | H        | 1 hour      | 1 hour        | 1 hour      |
-| Music Player            | H        | 2 hours        | 3 hours        | 3 hours      |
-| List of Playlists         | H        | 2 hours        | 1 hour        | 1 hour      |
-| Add Song Form         | H        | 2 hours        | 2 hours       | 2 hours     |
-| Delete songs          | H | 2 hours | 2 hours | 2 hours |
-| Create Playlists | H | 1 hour | 1 hour | 1 hour |
-| User Authentication | M | 2 hours | 7 hours | 7 hours |
-
 ### Additional Libraries
 - Firebase User Authentication
 - React-Toastify
