@@ -34,24 +34,6 @@ Create an account with your email and password to start streaming your favorite 
 - Discover songs based on genre 
 
 
-### Additional Libraries
-- Firebase User Authentication
-- React-Toastify
-
-### Code Snippet:
-
-
-### Issues and Resolutions:
-
-- Error: CORS preventing audio from SoundCloud link from playing
-    -  Resolution: You can retrieve the link by searching the song you want on SoundClound, select share, and then embed. Take the src link to be able to play the song.
-- Error: Cannot retrieve user data
-    - Resolution: Used the spread operator to 
-- Error: Authentication state persistance - when logout button is clicked, there is still a call to the backend to get user data
-- Resolution:
-Spotifly is a music streaming app which allows users to seamlessly view playlists, create new playlists, add songs to their playlists and play their favorite songs without advertisements.
-
-
 ### MVP Goals:
 
 - Have a login and sign up page
