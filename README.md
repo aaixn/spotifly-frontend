@@ -5,7 +5,7 @@
 Spotifly is a music streaming app which allows users to seamlessly create playlists, view playlists, and play their favorite songs without advertisements. Spotifly is connected to SoundCloud, providing users access to a wider range of artists and songs including the latest hits.
 
 Create an account with your email and password to start streaming your favorite tunes!
-[Link to Backend Repo] (https://github.com/esaltzm/spotifly-backend)
+[Link to Backend Repo](https://github.com/esaltzm/spotifly-backend)
 
 ### Wireframe
 
